@@ -48,6 +48,7 @@
         </div>
     </div>
 </div>
+-->
 
 <!-- Inicio chido -->
 <link rel="stylesheet" type="text/css"
@@ -56,6 +57,127 @@
     <div class="content-wrapper-before blue-grey lighten-5"></div>
     <div class="col s12">
         <div class="container">
+            <div class="col s12 m6 l6">
+      <div id="placeholder" class="card card card-default scrollspy">
+        <div class="card-content">
+          <h4 class="card-title">Insertar pregunta</h4>
+          <form name="questions" id="questions"
+                        method="POST" action="/Addquestion">
+            <div class="row">
+              <div class="input-field col s10">
+                <input placeholder="Pregunta" type='text'
+                            id='pregunta' name="pregunta">
+                
+              </div>
+              <div class="input-field col s2">
+                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s10">
+                <input placeholder="Opción A" type='text' id='a' name="a">
+              </div>
+              <div class="input-field col s2">
+                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s10">
+                <input placeholder="Opción B" type='text' id='b' name="b">
+              </div>
+              <div class="input-field col s2">
+                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s10">
+                <input placeholder="Opción C" type='text' id='c' name="c">
+              </div>
+              <div class="input-field col s2">
+                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="tema" id="tema">
+                                <option value="" disabled selected>Selecciona tema</option>
+                                {{#each temas}}
+                                <option value={{id_tem}}>{{nom_tem}}</option>
+                                {{/each}}
+                            </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="dificultad" id="dificultad">
+                                <option value="" disabled selected>Selecciona dificultad</option>
+                                <option value="1">Fácil</option>
+                                <option value="2">Normal</option>
+                                <option value="3">Díficil</option>
+                            </select>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light indigo lighten-1"
+                                type="submit" name="action">Agregar
+                                <i class="material-icons right">send</i>
+                            </button>
+                </div>
+              </div>
+              <div class="row">
+                  <p id="avisos"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+        <div id="teclado_modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="col s12 m6 l6">
+        <input type="text" placeholder="ecuación">
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
+      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a><br><br><br>
+      </div>
+      <div class="col s12 m6 l6">
+          <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">Aceptar</a>
+      </div>
+    </div>
+  </div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="card card card-default scrollspy">
+                    <img src="images_algebra/parallax9.png" width="100%"><br><br>
+                    <img src="images_algebra/parallax10.jpg" width="100%">
+                </div>
+            </div>
+            
+    </div>
+    </div>
+    <div class="col s12">
+        <div class="container">
+            
             <div class="section app-file-manager-wrapper">
                 <!-- File Manager app overlay -->
                 <div class="app-file-overlay"></div>
@@ -63,72 +185,21 @@
                 <!-- sidebar left start -->
                 <div class="sidebar-left">
                     <!--left sidebar of file manager start -->
-                    <div class="app-file-sidebar display-flex">
-                        <!-- App File sidebar - Left section Starts -->
-                        <div class="app-file-sidebar-left">
-                            <!-- sidebar close icon starts -->
-                            <span class="app-file-sidebar-close
-                                hide-on-med-and-up"><i class="material-icons">close</i></span>
-                            <!-- sidebar close icon ends -->
-                            <div class="input-field add-new-file mt-0">
-                                <!-- Add File Button -->
-                                <form name="questions" id="questions"
-                        method="POST" action="/Addquestion">
-                        Ingresa la pregunta: <input type='text'
-                            id='pregunta' name="pregunta">
-                        iniciso a: <input type='text' id='a' name="a">
-                        inciso b: <input type='text' id='b' name="b">
-                        inciso c: <input type='text' id='c' name="c">
-                        inciso d: <input type='text' id='d' name="d">
-                        Ingresa el tema:
-                            <select name="tema" id="tema">
-                                <option value="" disabled selected>Selecciona tema</option>
-                                {{#each temas}}
-                                <option value={{id_tem}}>{{nom_tem}}</option>
+                        <select>
+                            <option>Todas las dificultades</option>
+                            <option>Fácil</option>
+                            <option>Normal</option>
+                            <option>Díficil</option>
+                        </select>
+                        <select>
+                            <option>Todos los temas</option>
+                            {{#each temas}}
+                                <option>{{nom_tem}}</option>
                                 {{/each}}
-                            </select>
-                        Ingresa la dificultad:
-                            <select name="dificultad" id="dificultad">
-                                <option value="" disabled selected>Selecciona dificultad</option>
-                                <option value="1">Fácil</option>
-                                <option value="2">Normal</option>
-                                <option value="1">Díficil</option>
-                            </select>
-                            
-                        <div>
-                            <button class="btn waves-effect waves-light indigo lighten-1"
-                                type="submit" name="action">Agregar
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </form>
-                    <p id="avisos"></p>
-                            </div>
-                            <div class="app-file-sidebar-content ps">
-                                <!-- App File Left Sidebar - Drive Content Starts -->
-                                <span class="app-file-label">Temas</span>
-                                <div class="collection file-manager-drive mt-3">
-                                    {{#each temas}}
-                                    <a href="#" class="collection-item
-                                        file-item-action">
-                                        <div class="fonticon-wrap display-inline
-                                            mr-3">
-                                            <i class="material-icons">assignment</i>
-                                        </div>
-                                        <span>{{nom_tem}}</span>
-                                    </a>
-                                    {{/each}}
-                                </div>
-                                <!-- App File Left Sidebar - Drive Content Ends -->
-                                <div class="ps__rail-x" style="left: 0px;
-                                    bottom: 0px;"><div class="ps__thumb-x"
-                                        tabindex="0" style="left: 0px; width:
-                                        0px;"></div></div><div
-                                    class="ps__rail-y" style="top: 0px; right:
-                                    0px;"><div class="ps__thumb-y" tabindex="0"
-                                        style="top: 0px; height: 0px;"></div></div></div>
-                        </div>
-                    </div>
+                        </select>
+
+                        <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">Buscar</a>
+                        
                     <!--left sidebar of file manager start -->
                 </div>
                 <!--/ sidebar left end -->
@@ -151,6 +222,7 @@
                                         placeholder="Buscar">
                                 </div>
                             </div>
+                            
                             <!-- Header search bar Ends -->
 
                         </div>
@@ -352,11 +424,19 @@
         <div class="content-overlay"></div>
         
     </div>
-</div>
+</div></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
+    var instances = M.FormSelect.init(elems);
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems);
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
   });
 </script>
