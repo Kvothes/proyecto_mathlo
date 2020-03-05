@@ -1,0 +1,73 @@
+<div class="container">
+
+    <!-- Register Section Form -->
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+             {{#each edit2}}
+          <form name="sentMessage" id="contactForm" action="/ModifyNa" method="POST">
+            <!--Nombre-->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Nombre</label>
+                <input class="form-control" name="nom" id="nom" type="text" placeholder="Nombre" value="{{nom_us}}" required="required">
+                
+              </div>
+            </div>
+            <!--Apellido Paterno-->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Apellido Paterno</label>
+                <input class="form-control" id="appat" name="appat" type="text" placeholder="Apellido Paterno" value="{{appat_us}}" required="required">
+                
+              </div>
+            </div>
+            <!--Apellido Materno-->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Apellido Materno</label>
+                <input class="form-control" id="apmat" name="apmat" type="text" placeholder="Apellido Materno" value="{{apmat_us}}" required="required">
+                
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Usuario</label>
+                <input class="form-control" id="username" name="usnam" type="text" placeholder="Usuario" value="{{usnam_us}}" required="required">
+                
+              </div>
+            </div>
+            <!--Correo-->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Correo Electronico</label>
+                <input class="form-control" id="email" name="cor" type="email" placeholder="Correo" required="required" value="{{cor_us}}" data-validation-required-message="Ingresa Correo.">
+                
+              </div>
+            </div>
+            <!--Password-->
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Contraseña Actual</label>
+                <input class="form-control" id="pass" name="pass" type="password" placeholder="Contraseña Actual" required="required" value="" data-validation-required-message="Ingresa Contraseña.">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Contraseña</label>
+                <input class="form-control" id="apmat" name="pas" type="password" placeholder="Contraseña" required="required" value="{{pas_us}}" data-validation-required-message="Ingresa Contraseña.">
+                
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Modificar</button>
+            </div>
+             {{/each}} 
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

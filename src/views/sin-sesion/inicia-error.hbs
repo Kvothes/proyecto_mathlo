@@ -1,0 +1,112 @@
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="/images-1/icons/lab.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor-1/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-1/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-1/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-1/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/css/util.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->
+
+<!-- Custom fonts for this theme -->
+<link href="/vendor-1/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+<style>
+	body {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-color: #66999;
+	}
+</style>
+<div class="bg-contact100" style="background-image: url('images/bg-02.jpg');">
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<div class="contact100-pic js-tilt" data-tilt>
+				<img alt="IMG" id="img">
+			</div>
+
+
+
+			<form  action="/iniciar"
+				method="POST">
+				<!--<div class=".container-contact100-form-btn" >
+							<a href="index.html" class="contact100-form-btnback"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbspRegresar</a>
+						</div>-->
+				<span class="contact100-form-title">
+					My Chemist Lab - <br> Inicio de Sesión
+				</span>
+
+				<br>
+
+				<div class="wrap-input100 validate-input" data-validate="Usuario requerido">
+					<input class="input100" id="username" type="text" maxlength="50" placeholder="Usuario" name="usnam" value="{{msg.usn}}">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				<br>
+
+				<div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
+					<input class="input100" id="password" type="password" maxlength="100" placeholder="Contraseña"
+						name="pas">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+					</span>
+				</div>
+				<br>
+				
+					<span class="label-input100" id="avisos">{{#if msg.err}}
+                        {{msg.err}}
+                        {{/if}}
+                    </span>
+				<br>
+
+				<div class="container-contact100-form-btn">
+
+					<button type="submit" class="contact100-form-btn" id="send">
+						<i class="fa fa-flask fx" aria-hidden="true"></i>
+						
+						Iniciar Sesión
+					</button>
+				</div>
+
+				<br>
+
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src="/vendor-1/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-1/bootstrap/js/popper.js"></script>
+<script src="/vendor-1/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-1/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-1/tilt/tilt.jquery.min.js"></script>
+<script>
+	$('.js-tilt').tilt({
+		scale: 1.1
+	})
+</script>
+<script type="text/javascript" src="js/valin.js"></script> 

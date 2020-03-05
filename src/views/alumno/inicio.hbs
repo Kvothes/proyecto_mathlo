@@ -1,0 +1,90 @@
+<div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Cerrar Sesion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h2>Alumno</h2>
+            
+
+            {{#if rows}}
+            {{#each rows}}
+            <p>Semestre</p>
+            {{cla_sem}}
+
+            <p>Turno</p>
+            {{cla_tur}}
+
+            <p>Opciones</p>
+            <form action="/AbrirGrupoA/{{id_gru}}" method="POST">
+                <button type="submit">Abrir</button>
+            </form>
+            <form action="/deleteGA/{{id_us}}" method="POST">
+                <button type="submit">Eliminar</button>
+            </form>
+
+
+            {{/each}}
+            {{else}}
+            <div class="line"></div>
+            <h2>¡Aun no tienes un grupo! Solicita el codigo a tu profesor.</h2>
+
+            {{/if}}
+            <h5>Unirse a Grupo</h5>
+            <form action="/alumno" method="POST">
+                <input type="text" name="token" placeholder="Ingresa el codigo." required>
+                <p id="error">{{#if aviso}}
+                        {{aviso.aviso}}
+                    {{/if}}
+                </p>
+                <button type="submit" id="send">Aceptar</button>
+            </form>
+
+        </div>
+
+<!--<div class="container">
+    {{#if rows}}
+    {{#each rows}}
+    <div>Semestre</div>
+    <div>{{cla_sem}}</div>
+    <div>Turno</div>
+    <div>{{cla_tur}}</div>
+    <div>Opciones:</div>
+    <form action="/AbrirGrupoA/{{id_gru}}" method="POST">
+            <button type="submit">Abrir</button>
+    </form>
+    <form action="/deleteGA/{{id_us}}" method="POST">
+            <button type="submit">Eliminar</button>
+    </form>
+    {{/each}}
+    {{else}}
+    <div>No tiene ningun grupo</div>
+    {{/if}}
+    <div class="agrega">
+        <p>Agrega un grupo</p>
+        <form action="/verificarToken" method="POST">
+            <input type="text" name="token" placeholder="token" required>
+            <button type="submit">Aceptar</button>
+        </form>
+    </div>
+</div>
+-->

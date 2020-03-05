@@ -1,0 +1,48 @@
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido Materno</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Correo</th>
+        <th scope="col">password</th>
+        
+      </tr>
+    </thead>
+    
+    
+      {{#each rows}}
+      <tbody id="myTable"
+      <tr>
+        <td>{{id_us}}</td>
+        <td>{{nom_us}}</td>
+        <td>{{appat_us}}</td>
+        <td>{{apmat_us}}</td>
+        <td>{{cor_us}}</td>
+        <td>{{pas_us}}</td>
+        <td>{{id_gru}}</td>
+        <td>
+          <form action="/BorrarAdmin/{{id_us}}" method="post">
+            <button type="submit" class="btn btn-danger">Borrar</button>
+          </form>
+        </td>
+        <td>
+          <form action="/Modify/{{id_us}}" method="post">
+            <button type="submit" class="btn btn-success">Modificar</button>
+          </form>
+        </td>
+    </tr>
+      {{else}}
+      <tr>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>

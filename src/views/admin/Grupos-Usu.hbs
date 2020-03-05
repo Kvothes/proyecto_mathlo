@@ -1,0 +1,75 @@
+<div>
+  <h1>Agrega un nuevo grupo</h1>
+  <form action="/AddGrupobb" method="post">
+    <p>Grupo: </p>
+    <input type="text" maxlength="50" placeholder="Grupo" name="id_gru" id="nom" value="" required>
+    <p>Semestre: </p>
+    <input type="number" maxlength="30" max="6" min="1" placeholder="Semestre" name="id_sem" value="" required>
+    <p>Turno: </p>
+    <select name="id_tur">
+      <option value="1">Matutino</option>
+      <option value="2">Vespertino</option>
+    </select>
+    <p>Descripcion: </p>
+    <input type="text" maxlength="30" placeholder="Descripcion" name="des_gru" value="" required>
+    <button class="btn btn-success">Agregar</button>
+    <p>Docente a cargo: </p>
+    <select name="id_prof">
+      {{#each docentes}}
+      <option value="{{id_us}}">{{nom_us}} {{appat_us}} {{apmat_us}}</option>
+      {{/each}}
+    </select>
+  </form>
+  <h1>Agrega a una persona a un grupo</h1>
+</div>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Semestre</th>
+      <th scope="col">Turno</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Código</th>
+    </tr>
+  </thead>
+  {{#each rows}}
+  <tbody id="myTable">
+  <tr>
+    <td>{{id_gru}}</td>
+    <td>{{cla_sem}}</td>
+    <td>{{cla_tur}}</td>
+    <td>{{des_gru}}</td>
+    <td>{{con_tok}}</td>
+    <td>
+     {{#if bol_tok}}
+      <form action="/desactivar/{{id_gru}}" method="post">
+        <button type="submit" class="btn btn-danger">desactivar</button>
+      </form>
+      {{else}}
+      <form action="/desactivar/{{id_gru}}" method="post">
+        <button type="submit" class="btn btn-success">Activar</button>
+      </form>
+      {{/if}} </td>
+    <td>
+      <form action="/BorrarGrupo/{{id_gru}}" method="post">
+        <button type="submit" class="btn btn-danger">Borrar</button>
+      </form>
+    </td>
+    <td>
+      <form action="/ModGrupoAdmin/{{id_gru}}" method="post">
+        <button type="submit" class="btn btn-success">Modificar</button>
+      </form>
+    </td>
+    </tr>
+    {{else}}
+    <tr>
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+      <td>---</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

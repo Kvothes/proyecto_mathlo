@@ -1,0 +1,394 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<style>
+    body {
+        background-color: #ffffff;
+        background-image: linear-gradient(19deg, #ffffff 0%, #b7e1e2 100%);
+
+    }
+
+    .xd {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+
+
+    .xd {
+        position: relative;
+        bottom: 10px;
+    }
+
+    .xu {
+        position: absolute;
+        top: 0px;
+    }
+
+    .xs {
+        position: absolute;
+        bottom: 90px;
+    }
+
+    .lo {
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .border {
+        border-radius: 1.5rem;
+    }
+</style>
+<div class="lo center" id="loadercircle">
+    <img class="circle" src="images_algebra/algebra.jpg" height="150" width="150">
+    <br>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <h4>Cargando...</h4>
+</div>
+
+<!----------------------------------------------------------------------->
+
+<!---------------------------------------------------------------------->
+<div class="hide" id="contents">
+
+    <!--<div class="background amber lighten-3">-->
+    <a href="#" data-target="slide-out" class="sidenav-trigger z-depth-4 btn-floating btn-large cyan pulse left"><i
+            class="medium material-icons left">menu</i></a>
+    <!--</div>-->
+    <div class="parallax-container">
+        <div class="section white z-depth-5">           
+         <h1 class="center">Bienvenido</h1>       
+            </div>
+        <div class="parallax"><img src="images_algebra/parallax7.png"></div>
+    </div>
+    <div class="section white z-depth-5">
+
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <main><iframe width="600" height="371" seamless frameborder="0" scrolling="no"
+                            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_OMhxR9km7ucEyWR-uzoK61-727xQZweGfAqPNmTVc1QX73CoIGU5KR2AlsuTyD371bPrVahpYB4b/pubchart?oid=611019198&amp;format=interactive"></iframe>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 md6"></div>
+            <div class=" container">
+                <div class=" rs col s12 md">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">textsms</i>
+                        <input type="text" id="autocomplete-input" class="autocomplete" onkeyup="myFunction()">
+                        <label for="autocomplete-input">Autocomplete</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section white z-depth-5">
+            <div class="section">
+                <h6 id="resultados">Resultados:</h6>
+                <div class="row">
+                    <div>
+                         <button class="btn waves-effect waves-light" type="submit" name="action"
+                                                    href="#modal3" id="send">
+                                                    <i class="fas fa-edit"></i>
+                                                    <a class="modal-trigger btn-flat" href="#modal3">Agregar</a>  </button>
+                                                
+                                                
+                    </div>
+                    <div class="row container">
+                        <div class="row">
+                            <div class="col s12 md6"></div>
+                            <table class="highlight responsive-table">
+                                <table class="border" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>NOMBRE</th>
+                                            <th>CORREO</th>
+                                            <th>TIPO DE USUARIO</th>
+                                            <th>ELIMINAR</th>
+                                            <th>MODIFICAR</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {{#each rows}}
+                                        <tr>
+                                            <td  contenteditable="true">{{nom_usu}}</td>
+                                            <td  contenteditable="true">{{cor_usu}}</td>
+                                            <td  contenteditable="true">{{cat_tus}}</td>
+                                            <td>
+                                                <button class="btn waves-effect waves-light" type="submit" name="action"
+                                                    id="send">
+                                                    <i class="fas fa-trash"></i>
+                                                    <a onclick="document.getElementById('tema_seleccionado').innerHTML = '{{nom_usu}}';
+                                            document.getElementById('id_tema').value = '{{id_usu}}'"
+                                                        class="modal-trigger btn-flat"
+                                                        href="#modal_eliminar">Eliminar</a>
+                                                </button>
+                                                 
+                                            </td>
+                                            <td>
+                                                <button class="btn waves-effect waves-light" type="submit" name="action"
+                                                    href="#modal2" id="send">
+                                                    <i class="fas fa-edit"></i>
+                                                    <a onclick="let str='{{nom_usu}}'
+                                                    let res=str.split(' ');
+                                                    
+                                                    document.getElementById('first_name_mod').value = res[0];
+                                                    document.getElementById('last_name_mod').value = res[1];
+                                                    document.getElementById('id_tema').value = '{{id_usu}}'"
+                                                    class="modal-trigger btn-flat" href="#modal2">Modificar</a>
+                                                </button>
+
+                                            </td>
+                                        </tr>
+
+                                        {{else}}
+                                        <tr>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal Structure ----------------------------------------------------------------------------------------------------------------->
+            <div id="modal_eliminar" class="modal">
+                <div class="modal-content">
+                    <h4 class="header center-align">¿Esta seguro que desea eliminar el siguiente elemento?</h4>
+                    <form action="/eliminarUs2.0" method="POST" id="eliminar_tema">
+                        <h5 class="row center-align" id="tema_seleccionado"></h5>
+                        <div class="row">
+                            <input type="text" id="id_tema" value="" name="tema_eliminar" hidden>
+                        </div>
+                        <div class="row center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                </div>
+            </div>
+            <div id="modal3" class="modal">
+                 <div class="modal-content">
+                    <h4>Registrar Administrador</h4>
+                    <form action="/registrarAdmin" method="POST" id="registro_admin" v>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name" name="nombres_usuario" type="text" alue="" class="validate">
+                                <label for="first_name">Nombres</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="last_name" name="apellidos_usuario" type="text" alue="" class="validate">
+                                <label for="last_name">Apellidos</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" name="email_usuario" type="email" class="validate">
+                                <label for="email">Email</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" name="contraseña_usuario" type="password" class="validate">
+                                <label for="password">Password</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                        </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="waves-effect waves-green btn-flat">Registrar</button>
+                        
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                    </div>
+                    </form>
+            </div>
+            
+            
+            </div>
+            </div>
+            </div>
+            </div>
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <h4>Modificar Usuario</h4>
+                    <form action="/registrar" method="POST" id="registro_usuario">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name_mod" name="nombres_usuario" type="text" class="validate">
+                                <label for="first_name">Nombres</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="last_name_mod" name="apellidos_usuario" type="text" class="validate">
+                                <label for="last_name">Apellidos</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="tipo_usuario">
+                                    <option value="" disabled selected>Escoge tu opción</option>
+                                    <option value=1>Alumno</option>
+                                    <option value=2>Padre/Tutor</option>
+                                </select>
+                                <label>Tipo de cuenta</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="curp" name="curp_alumno" type="text" class="validate">
+                                <label for="curp">CURP del alumno</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" name="email_usuario" type="email" class="validate">
+                                <label for="email">Email</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" name="contraseña_usuario" type="password" class="validate">
+                                <label for="password">Password</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <a onclick="document.getElementById('registro_usuario').submit()"
+                            class="waves-effect waves-green btn-flat">Registrar</a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                    </div>
+                </div>
+                
+        
+            </div>
+        
+            
+            <div class="parallax-container">
+                <div class="parallax"><img src="images_algebra/parallax7.png"></div>
+
+
+                <!-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            </div>
+
+            <script>
+                window.addEventListener('load', () => {
+                    setTimeout(carga, 50);
+                    function carga() {
+                        document.getElementById('loadercircle').className = 'hide';
+                        document.getElementById('contents').className = 'animated fadeIn';
+                    }
+
+                })
+                const resultado = document.getElementById('resultados');
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.sidenav');
+                    var instances = M.Sidenav.init(elems);
+                    var elems = document.querySelectorAll('.carousel');
+                    var instances = M.Carousel.init(elems);
+                    var elems = document.querySelectorAll('.modal');
+
+                    var instances = M.Modal.init(elems);
+                    var options = {
+                        data: {
+                            "Microsoft": null,
+                            "Alvin": null
+                        },
+                        onAutocomplete: function (texto) {
+                            resultado.innerHTML = `Resultado: ${texto}`;
+                        }
+                    }
+                    var elems = document.querySelectorAll('.autocomplete');
+                    var instances = M.Autocomplete.init(elems, options);
+                    var elems = document.querySelectorAll('.parallax');
+                    var instances = M.Parallax.init(elems, responsiveThreshold = 100);
+                });
+
+
+
+                // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+                // var collapsibleElem = document.querySelector('.collapsible');
+                // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+                // Or with jQuery
+
+                $(document).ready(function () {
+                    $('.sidenav').sidenav();
+                });
+
+            </script>
+            <script>
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("autocomplete-input");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+
+            <!--===============================================================================================-->
+
+
+

@@ -1,0 +1,40 @@
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax11.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <h2 class="header center-align">Bienvenido {{usuario.nom_usu}}</h2>
+    <div class="row container">
+        <h4 class="grey-text text-darken-3 lighten-3 center-align">
+            Bienvenido a una nueva experiencia en las matematicas, esperemos que el sistema
+            sea de gran utilidad para ti.
+        </h4>
+    </div>
+    {{#if grupo}}
+    <h1>Grupo:{{grupoNom}}</h1>
+                
+                {{else}}
+     <div class="section white z-depth-5">
+<div class="row container">
+        <form action="/alumnoIGrupo" method="POST" id="codigo_grupo">
+            <div class="row">
+                <h2 class="center-align">Introduce el código de Grupo</h2>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="codigo" name="codigo_grupo" type="text" class="validate">
+                    <label for="codigo">Código</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+</div>
+                
+    {{/if}}
+   

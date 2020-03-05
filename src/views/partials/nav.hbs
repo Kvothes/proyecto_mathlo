@@ -1,0 +1,44 @@
+<!--Begin navbar
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue" >
+        <a class="navbar-brand" href="index.html">My Chemist Lab</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+             <ul class="navbar-nav mr-auto">
+            
+            </ul> 
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-danger my-2 my-sm-0" href="/registra">Registro</a>
+                <div style="width: 2px;"></div>
+                <a class="btn btn-danger my-2 my-sm-0" href="/">Iniciar Sesion</a>
+
+            </form>
+        </div>
+    </nav> end navbar -->
+<ul id="slide-out" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background blue">
+            </div>
+            <br>
+        </div>
+    </li>
+    <li><a class="modal-trigger" href="#modal1"><i class="material-icons">person_add</i>Registrarse</a></li>
+    <li><a href="/#inicia"><i class="material-icons">person_outline</i>Iniciar sesión</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+</ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger z-depth-4 btn-floating btn-large cyan pulse left"><i
+            class="medium material-icons">menu</i></a>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, inDuration = 500);
+    });
+</script>

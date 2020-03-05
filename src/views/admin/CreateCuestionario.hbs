@@ -1,0 +1,40 @@
+<script>
+
+    function añadeOpcion() {
+        let contenedor = document.getElementsByTagName('form');
+        let opcion = document.createElement('input');
+        opcion.setAttribute('type', 'radio');
+        let index = 1;
+        while (document.getElementsByName(`${index}`)) {
+            index++;
+        }
+        opcion.setAttribute('name', `${index}`);
+        let p = document.createElement('p');
+        p.setAttribute('contenteditable', true);
+        let texto = document.createTextNode('Respuesta 1');
+        p.appendChild(opcion);
+        p.appendChild(texto);
+        contenedor.insertBefore(p, document.getElementById('opcion'));
+    }
+
+    function añadePregunta() {
+        let contenedor = document.getElementsByTagName('form');
+        let opcion = document.createElement('input');
+        pregunta.setAttribute('type', 'text');
+        pregunta.setAttribute('placeholder', 'pregunta');
+        for (let a = 1; document.getElementsByName(`pregunta${a}`); a++){
+            if(!document.getElementsByName(`pregunta${a}`)){
+                opcion.setAttribute('name', `pregunta${a}`);
+            }
+        }
+        contenedor.insertBefore(pregunta, document.getElementById('opcion'));
+    }
+
+</script>
+
+<form action="/cuestionario" method="POST">
+    <input type="text" placeholder="pregunta" name="pregunta1">
+    <button onclick="añadeOpcion()" id="opcion">Añadir opcion</button>
+    <button onclick="añadePregunta()" id="pregunta"></button>
+    <button type="submit" id="aceptar">Aceptar</button>
+</form>

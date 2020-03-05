@@ -1,0 +1,26 @@
+<div class="container">
+
+    <form action="/subirPracticas" method="POST" enctype="multipart/form-data">
+        <input type="file" name="practice" id="practice" onchange="archivo(this)">
+        <p class="text">Ingresa la descripción de la aplicación</p>
+        <input type="text" id="description" name="description">
+        <br>
+        <select name="semestre" id="semestre">
+            <option value="1">Primer</option>
+            <option value="2">Segundo</option>
+            <option value="3">Tercero</option>
+            <option value="4">Cuarto</option>
+            <option value="5">Quinto</option>
+            <option value="6">Sexto</option>
+        </select> <br>
+        <input type="submit" class="button" name="send" id="send">
+        
+        <p id="avisos">{{#if mensaje}}{{mnsj}}{{/if}}</p>
+        
+
+
+    </form>
+
+</div>
+
+<script type="text/javascript" src="js-admin/upracticas.js"> </script>  

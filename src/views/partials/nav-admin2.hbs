@@ -1,0 +1,29 @@
+<ul id="slide-out" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images_algebra/parallax7.png">
+            </div>
+            <a><img class="circle" src="images_algebra/usuario3.png"></a>
+            <a><span class="white-text name">{{usuario.nom_usu}}</span></a>
+            <a><span class="white-text email">{{usuario.cor_usu}}</span></a>
+        </div>
+    </li>
+    <li><a href="/Admin2.0"><i class="material-icons">cloud</i>Inicio</a></li>
+    <li><a href="/AdminConsultUs2.0"><i class="material-icons">cloud</i>Consultar Usuarios</a></li>
+    <li><a href="/#!"><i class="material-icons">cloud</i>Reportes</a></li>
+    <li><a href="/#!"><i class="material-icons">cloud</i>Apoyos</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="/logout"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+</ul>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, inDuration = 500);
+    });
+
+</script>

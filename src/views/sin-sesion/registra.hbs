@@ -1,0 +1,285 @@
+<!-- Registro -->
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="/images-registro/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/fonts-registro/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/css-registro/util.css">
+<link rel="stylesheet" type="text/css" href="/css-registro/main.css">
+<!--===============================================================================================-->
+<!-- Fin de registro -->
+<div class="container-contact100">
+  <div class="wrap-contact100">
+    <form class="contact100-form validate-form" action="/registrar" method="POST">
+      <span class="contact100-form-title">
+        Registro
+      </span>
+
+      <div class="wrap-input100 validate-input" data-validate="Nombre!">
+        <span class="label-input100">Nombre</span>
+        <input class="input100" type="text" name="nom" id="nom" placeholder="Ingresa tu nombre">
+        <span class="focus-input100"></span>
+         <span class="label-input100" id="anombre"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="AppellidoP!">
+        <span class="label-input100">Appellido Paterno</span>
+        <input class="input100" type="text" name="appat" id="appat" placeholder="Ingresa tu Appellido Paterno">
+        <span class="focus-input100" ></span>
+        <span class="label-input100"id="aappat"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="AppellidoM!">
+        <span class="label-input100">Appellido Materno</span>
+        <input class="input100" type="text" name="apmat" id="apmat" placeholder="Ingresa tu Appellido Materno">
+        <span class="focus-input100" ></span>
+        <span class="label-input100"id="aapmat"></span>
+      </div>
+
+      <div class="wrap-input100 input100-select">
+        <span class="label-input100">Sexo</span>
+        <div>
+          <select class="selection-2" id="sex" name="sex">
+            <option value="1">Hombre</option>
+            <option value="2">Mujer</option>
+            <option value="3">Prefiero no decirlo</option>
+          </select>
+        </div>
+        <span class="focus-input100"></span>
+        <span class="label-input100" id="asex"></span>
+      </div>
+
+      <div class="wrap-input100 input100-select">
+        <span class="label-input100">Tipo de Usuario</span>
+        <div>
+          <select class="selection-2" id="tipo" name="tipo">
+            <option value="1">Alumno</option>
+            <option value="2">Profesor</option>
+          </select>
+        </div>
+        <span class="focus-input100"></span>
+        <span class="label-input100"id="atipo"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Usuario!">
+        <span class="label-input100">Usuario</span>
+        <input class="input100" type="text" name="usnam" id="username" placeholder="Ingresa tu Usuario">
+        <span class="focus-input100"></span>
+        <span class="label-input100"id="ausername"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Email valido requerido: ex@abc.xyz">
+        <span class="label-input100">Correo Electrónico</span>
+        <input class="input100" type="text" name="cor" id="email" placeholder="Ingrsa tu correo">
+        <span class="focus-input100"></span>
+        <span class="label-input100"id="aemail"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Contraseña!">
+        <span class="label-input100">Contraseña</span>
+        <input class="input100" type="password" id="pas" name="pas" placeholder="Ingresa tu Contraseña">
+        <span class="focus-input100"></span>
+        <span class="label-input100"id="apas"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Contraseña!">
+        <span class="label-input100">Confirma contraseña</span>
+        <input class="input100" type="password" id="conf" name="conf" placeholder="Ingresa tu contraseña nuevamente">
+        <span class="focus-input100"></span>
+        <span class="label-input100"id="aconf"></span>
+      </div>
+      <a href="https://drive.google.com/file/d/1hU8Y00DOJgpoIsLK5aZAWhQH2eenwlWu/view?usp=sharing" target="_blank">Aviso de Privacidad</a>
+            <div class="wrap-input100 validate-input">
+        <span class="label-input100">Acepto los terminos y condiciones</span>
+        <input class="" type="radio" id="ap" name="ap" value="si" >
+        <span class="label-input100">Si</span>
+        <input class="" type="radio" id="ap" name="ap" value="no" checked>
+        <span class="label-input100">No</span>
+        
+      </div>
+      <div class="container-contact100-form-btn">
+        <div class="wrap-contact100-form-btn">
+          <div class="contact100-form-bgbtn"></div>
+          
+          <button class="contact100-form-btn" id="send">
+            <span>
+              Registrar
+              <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="/vendor-registro/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/bootstrap/js/popper.js"></script>
+<script src="/vendor-registro/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/select2/select2.min.js"></script>
+<script>
+  $(".selection-2").select2({
+    minimumResultsForSearch: 20,
+    dropdownParent: $('#dropDownSelect1')
+  });
+</script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/daterangepicker/moment.min.js"></script>
+<script src="/vendor-registro/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/js-registro/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-23581568-13');
+</script>
+
+
+
+<!--
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <form name="sentMessage" id="contactForm" action="/registrar" method="POST">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Nombre</label>
+            <input class="form-control" name="nom" id="nom" type="text" placeholder="Nombre" required="required">
+
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Apellido Paterno</label>
+            <input class="form-control" id="appat" name="appat" type="text" placeholder="Apellido Paterno"
+              required="required">
+
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Apellido Materno</label>
+            <input class="form-control" id="apmat" name="apmat" type="text" placeholder="Apellido Materno"
+              required="required">
+
+          </div>
+        </div>
+
+        <div class="control-group">
+
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <div class="form-group col-md-4">
+              <br>
+              <select id="sex" class="form-control form-control-lg" name="sex">
+                <option>
+                  Sexo
+                </option>
+                <option value="1">
+                  Hombre
+                </option>
+                <option value="2">
+                  Mujer
+                </option>
+                <option value="3">
+                  Prefiero no decirlo
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="control-group">
+
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <div class="form-group col-md-4">
+              <br>
+              <select id="tipo" class="form-control form-control-lg" name="tipo">
+                <option>
+                  Tipo Usuario
+                </option>
+                <option value="1">
+                  Alumno
+                </option>
+                <option value="2">
+                  Docente
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Usuario</label>
+            <input class="form-control" id="username" name="usnam" type="text" placeholder="Usuario"
+              required="required">
+
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Correo Electronico</label>
+            <input class="form-control" id="email" name="cor" type="email" placeholder="Correo" required="required"
+              data-validation-required-message="Ingresa Correo.">
+
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Contraseña</label>
+            <input class="form-control" id="password" name="pas" type="password" placeholder="Contraseña"
+              required="required" data-validation-required-message="Ingresa Contraseña.">
+
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Confirma Contraseña</label>
+            <input class="form-control" id="rpassword" name="conf" type="password" placeholder="Confirma Contraseña"
+              required="required" data-validation-required-message="Confirma Contraseña.">
+
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Registrar</button>
+        </div>
+        <p id="avisos"></p>
+      </form>
+    </div>
+  </div>
+
+</div>
+</section>
+</div>-->
+<script type="text/javascript" src="validator.min.js"></script>
+<script type="text/javascript" src="js/valreg.js">
+</script>

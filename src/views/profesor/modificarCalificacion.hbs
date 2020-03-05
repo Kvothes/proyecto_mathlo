@@ -1,0 +1,6 @@
+<form action="/modificaCalificacionbien" method="POST">
+    {{#each rows}}
+    <input type="number" min="0" max="10" value="{{cal_cpar}}" required name="calificacion">
+    <button type="submit">Aceptar</button>
+    {{/each}}
+</form>

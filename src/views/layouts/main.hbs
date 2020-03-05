@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<header>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+	<!-- Theme CSS -->
+	<link href="/css/freelancer.css" rel="stylesheet">
+	<link href="/css/minty.css" rel="stylesheet" />
+
+	<!-- Materialize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<title>My Chemistlab</title>
+</header>
+
+<body>
+	{{> nav}}
+	<noscript>
+		<h1>Esta pagina no funcionará bien sin JS ☺</h1>
+	</noscript>
+	{{{ body }}}
+
+	{{> footer}}
+
+	<!-- Contact Form JavaScript -->
+	<!--<script src="token.js" charset="utf8"></script>-->
+	<script src="/js/jqBootstrapValidation.js"></script>
+	<script src="/js/contact_me.js"></script>
+
+
+	<script src="/js-1/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151132015-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-151132015-1');
+	</script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-23581568-13');
+	</script>
+
+	<script>
+		let imgs = [];
+		imgs[0] = "images-1/img-01.png";
+		imgs[1] = "images-1/img-02.png";
+		imgs[2] = "images-1/img-03.png";
+
+		$("#img").attr('src', imgs[Math.floor(Math.random() * 3)]);
+
+
+	</script>
+
+	<script src="/js/jquery-1.10.2.js"></script>
+	<script src="/js/token.js" charset="utf8"></script>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems, responsiveThreshold = 100);
+        });
+		document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+	</script>
+
+</body>
+
+</html>
+</body>

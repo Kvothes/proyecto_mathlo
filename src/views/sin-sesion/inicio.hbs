@@ -1,0 +1,159 @@
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <div class="row container">
+        <h2 class="header">Bienvenido al proyecto bien mamalon de álgebra </h2>
+        <p class="grey-text text-darken-3 lighten-3"> El proyecto bien mamalon de álgebra esta destinado a los
+            estudiantes que necesitan mejorar dentro de las mátematicas; aportandoles herramientas
+            utiles para mejorar su desempeño, brindandoles apoyo y estadisticas personalizadas.
+        </p>
+        <h3>¿Con que elementos cuentas?</h3>
+        <h4>Como estudiante:</h4>
+
+    </div>
+    <div class="row container">
+        <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Podrás contestar
+            preguntas realizadas por tus profesores</pclass="grey-text text-darken-3 lighten-3">
+            <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Se hara un análisis
+                con esas preguntas</p>
+            <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Resaltaremos tus
+                debilidades</p>
+            <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Se te brindara apoyo
+                de acuerdo a tus debilidades</p>
+            <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Podrás mejorar
+                continuamente</p>
+
+    </div>
+    <div class="row container">
+        <h4>Como tutor:</h4>
+    </div>
+    <div class="row container">
+        <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Podrás observar el
+            rendimiento de tu hijo</p>
+        <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Te haremos llegar sus
+            temas de mayor error</p>
+        <p class="grey-text text-darken-3 lighten-3"><i class="material-icons">chevron_right</i>Te ayudaremos a darle un
+            mejor futuro</p>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax9.png"></div>
+</div>
+<div class="section white z-depth-5" id="inicia">
+    <div class="row container">
+        <h2 class="header">Comienza ahora</h2>
+    </div>
+    <div class="row container">
+        <div class="card blue-white darken-1 z-depth-3">
+            <div class="card-content black-text">
+                <span class="card-title">Iniciar sesión</span>
+                <div class="row">
+                    <form action="/iniciar" method="POST">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="email" type="email" name="email_inicio" class="validate">
+                                <label for="email">Email</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="password" type="password" name="contraseña_inicio" class="validate">
+                                <label for="password">Password</label>
+                                <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="card-action">
+                        <a class="modal-trigger" href="#modalRecuperacion">Recuperar cuenta</a>
+                        <a class="modal-trigger" href="#modal1">Registrarme</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><br><br><br><br>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Registro</h4>
+        <p>Asegurese de llenar todos los campos</p><br>
+        <form action="/registrar" method="POST" id="registro_usuario">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" name="nombres_usuario" type="text" class="validate">
+                    <label for="first_name">Nombres</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" name="apellidos_usuario" type="text" class="validate">
+                    <label for="last_name">Apellidos</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="tipo_usuario">
+                        <option value="" disabled selected>Escoge tu opción</option>
+                        <option value=1>Alumno</option>
+                        <option value=2>Padre/Tutor</option>
+                    </select>
+                    <label>Tipo de cuenta</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="curp" name="curp_alumno" type="text" class="validate">
+                    <label for="curp">CURP del alumno</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" name="email_usuario" type="email" class="validate">
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" name="contraseña_usuario" type="password" class="validate">
+                    <label for="password">Password</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <a onclick="document.getElementById('registro_usuario').submit()"
+                class="waves-effect waves-green btn-flat">Registrar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
+</div>
+<div id="modalRecuperacion" class="modal">
+    <div class="modal-content">
+        <h4 class="header">Ingrese el ultimo correo electronico con el que ingreso al sitio</h4>
+        <form action="/recuperarCuenta" method="POST" id="recuperar_cuenta">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" name="email_recuperacion" type="email" class="validate">
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a onclick="document.getElementById('recuperar_cuenta').submit()"
+            class="waves-effect waves-green btn-flat">Enviar</a>
+        <a href="#inicia" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, dismissible = false);
+    });
+</script>

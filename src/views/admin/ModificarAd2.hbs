@@ -1,0 +1,234 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<style>
+    body {
+        background-color: #ffffff;
+        background-image: linear-gradient(19deg, #ffffff 0%, #b7e1e2 100%);
+
+    }
+
+    .xd {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+
+
+    .xd {
+        position: relative;
+        bottom: 10px;
+    }
+
+    .xu {
+        position: absolute;
+        top: 0px;
+    }
+
+    .xs {
+        position: absolute;
+        bottom: 90px;
+    }
+
+    .lo {
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .border {
+        border-radius: 1.5rem;
+    }
+</style>
+<div class="lo center" id="loadercircle">
+    <img class="circle" src="images_algebra/algebra.jpg" height="150" width="150">
+    <br>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <h4>Cargando...</h4>
+</div>
+
+<!----------------------------------------------------------------------->
+
+<!---------------------------------------------------------------------->
+<div class="hide" id="contents">
+
+    <!--<div class="background amber lighten-3">-->
+    <a href="#" data-target="slide-out" class="sidenav-trigger z-depth-4 btn-floating btn-large cyan pulse left"><i
+            class="medium material-icons left">menu</i></a>
+    <!--</div>-->
+    <div class="parallax-container">
+        <div class="section white z-depth-5">
+            <h1 class="center">Modificar Usuarios</h1>
+        </div>
+        <div class="parallax"><img src="images_algebra/parallax7.png"></div>
+    </div>
+    <div class="section white z-depth-5">
+        <div class="row">
+            <div class="col s4"></div>
+            <form class="rs col s4" method="GET" action="/Users">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="first_name" type="text" class="validate">
+                        <label for="first_name"><A>
+                                <h6>PM</h6>
+                            </A></label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="curp" type="text" class="validate">
+                        <label for="curp"><A>
+                                <h6>CURP</h6>
+                            </A></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password"><A>
+                                <h6>Password</h6>
+                            </A></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email"><A>
+                                <h6>Email</h6>
+                            </A></label>
+                    </div>
+                </div>
+                <button type="submit" class="waves-effect waves-dark btn btn modal-trigger blue darken-3" id="send">
+                    <i class="fas fa-edit"></i>
+                    Modificar
+                </button></td>
+            </form>
+            <div class="col s4">
+                <div class="rs">
+                    <div class="row center">
+
+                    </div>   
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal Structure
+            ----------------------------------------------------------------------------------------------------------------->
+        <div id="modal1" class="bl modal">
+            <div class="modal-content">
+                <a>
+                    <h1>Atención</h1>
+                </a>
+                <a>
+                    <p>¿Desea borrar este elemento?</p>
+                </a>
+            </div>
+            <div class=" modal-footer blue darken-3">
+                <button type="submit" class="modal-close waves-effect waves-green btn-flat green darken-2" id="send">
+                    Aceptar
+                </button>
+                <button type="submit" class="modal-close waves-effect waves-green btn-flat red darken -3" id="send">
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images_algebra/parallax7.png"></div>
+
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(carga, 50);
+            function carga() {
+                document.getElementById('loadercircle').className = 'hide';
+                document.getElementById('contents').className = 'animated fadeIn';
+            }
+
+        })
+        const resultado = document.getElementById('resultados');
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+            var elems = document.querySelectorAll('.carousel');
+            var instances = M.Carousel.init(elems);
+            var elems = document.querySelectorAll('.modal');
+
+            var instances = M.Modal.init(elems);
+            var options = {
+                data: {
+                    "Microsoft": null,
+                    "Alvin": null
+                },
+                onAutocomplete: function (texto) {
+                    resultado.innerHTML = `Resultado: ${texto}`;
+                }
+            }
+            var elems = document.querySelectorAll('.autocomplete');
+            var instances = M.Autocomplete.init(elems, options);
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems, responsiveThreshold = 100);
+        });
+
+
+
+        // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+        // var collapsibleElem = document.querySelector('.collapsible');
+        // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+        // Or with jQuery
+
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+
+    </script>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("autocomplete-input");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!--===============================================================================================-->

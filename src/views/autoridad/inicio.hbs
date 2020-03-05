@@ -1,0 +1,531 @@
+<link rel="canonical" href="https://web2.0calc.es/">
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <h2 class="header center-align">Bienvenido {{usuario.nom_usu}}</h2>
+    <div class="row container">
+        <h4 class="grey-text text-darken-3 lighten-3 center-align">
+            Espero que haya tenido un excelente dia
+        </h4>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5" id="teclado">
+    <h2 class="header center-align">Testeo de tecladito bien mamalón</h2>
+    <div class="row container">
+        <form id="tecladoMatematicas">
+            <div class="row">
+                <div class="input-field col s10">
+                    <input placeholder="inserte su pregunta" type="text" name="pregunta" id="insertarPregunta">
+                    <label for="insertarPregunta">Uy si problemas</label>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" id="tecladoDisparadorMenu" class="z-depth-4 btn-floating btn-large red pulse"
+                        onclick="verTeclado()"><i class="medium material-icons">view_comfy</i></a>
+                </div>
+            </div>
+            <div class="row scale-transition scale-out" id="tecladoDisparador">
+                <div class="input-field col s2">
+                    <a href="#!" onclick="suma('insertarPregunta')" class="btn-floating btn-large green">➕</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="resta('insertarPregunta')" class="btn-floating btn-large green">➖</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="raiz('insertarPregunta')" class="btn-floating btn-large green">√</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="pi('insertarPregunta')" class="btn-floating btn-large green">π</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="igual('insertarPregunta')" class="btn-floating btn-large green">=</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="borrar('insertarPregunta')" class="btn-floating btn-large green">◁</a>
+                </div>
+            </div>
+            <div class="row scale-transition scale-out" id="tecladoDisparador2">
+                <div class="input-field col s2">
+                    <a href="#!" onclick="por('insertarPregunta')" class="btn-floating btn-large green">✖</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="entre('insertarPregunta')" class="btn-floating btn-large green">➗</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="parentesisA('insertarPregunta')" class="btn-floating btn-large green">(</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="parentesisB('insertarPregunta')" class="btn-floating btn-large green">)</a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="pordiez('insertarPregunta')"
+                        class="btn-floating btn-large green">x10<sup>x</sup></a>
+                </div>
+                <div class="input-field col s2">
+                    <a href="#!" onclick="exponente('insertarPregunta')" class="btn-floating btn-large green">^</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <h2 class="header center-align">Gestión de temas</h2>
+    <div class="row container">
+        <h4 class="grey-text text-darken-3 lighten-3">
+            Registrar tema
+        </h4>
+    </div>
+    <div class="row container">
+        <form action="/insertarTema" method="POST" id="insertarTema">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="insertaTema" name="tema" type="text" class="validate">
+                    <label for="insertaTema">Tema</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="unidad_aprendizaje">
+                        {{#each unidades_aprendizaje}}
+                        <option value={{id_uni}}>{{nom_uni}}</option>
+                        {{/each}}
+                    </select>
+                    <label>Unidad de aprendizaje</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="row container">
+        <table class="highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>Tema</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each temas}}
+                <tr>
+                    <td>{{nom_tem}}</td>
+                    <td><a onclick="document.getElementById('tema').value = '{{nom_tem}}';
+                            document.getElementById('id_tema_modificar').value = '{{id_tem}}'"
+                            class="modal-trigger btn-flat" href="#modal_modificar">Modificar</a></td>
+                    <td><a onclick="document.getElementById('tema_seleccionado').innerHTML = '{{nom_tem}}';
+                            document.getElementById('id_tema').value = '{{id_tem}}'" class="modal-trigger btn-flat"
+                            href="#modal_eliminar">Eliminar</a></td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <h2 class="header center-align">Gestión de apoyos</h2>
+    <div class="row container">
+        <h4 class="grey-text text-darken-3 lighten-3">
+            Registrar apoyo
+        </h4>
+    </div>
+    <div class="row container">
+        <form action="/insertarApoyo" method="POST" id="uploadForm" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="insertaApoyo" name="nombre_apoyo" type="text" class="validate">
+                    <label for="insertaApoyo">Nombre o descripción del apoyo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="textarea1" name="hipervinculo_apoyo" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Hipervinculo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Cargar PDF</span>
+                        <input type="file" id="file" name="archivo_apoyo" onchange="archivo(this)">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                    <div id="avisos"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="apoyo_tema">
+                        <option value="" disabled selected>Escoge tu opción</option>
+                        {{#each temas}}
+                        <option value={{id_tem}}>{{nom_tem}}</option>
+                        {{/each}}
+                    </select>
+                    <label>Tema</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" id="send" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="row container">
+        <table class="highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>Tema</th>
+                    <th>Apoyo</th>
+                    <th>PDF</th>
+                    <th>Hipervinculo</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each apoyos}}
+                <tr>
+                    <td>{{nom_tem}}</td>
+                    <td>{{nom_apo}}</td>
+                    <td>{{pdf_apo}}</td>
+                    <td>{{vin_apo}}</td>
+                    <td><a onclick="document.getElementById('nombre_apoyo_modificar').value = '{{nom_apo}}';
+                            document.getElementById('id_apoyo_modificar').value = '{{id_apo}}';
+                            document.getElementById('hipervinculo_apoyo_modificar').value = '{{vin_apo}}';
+                            document.getElementById('archivo_anterior_modificar').innerHTML = '{{pdf_apo}}';
+                            document.getElementById('select_apoyo_modificar').value = '{{id_tem}}'"
+                            class="modal-trigger btn-flat" href="#modal_modificar_apoyo">Modificar</a></td>
+                    <td><a onclick="document.getElementById('apoyo_seleccionado').innerHTML = '{{nom_apo}}';
+                            document.getElementById('id_apoyo').value = '{{id_apo}}'" class="modal-trigger btn-flat"
+                            href="#modal_eliminar_apoyo">Eliminar</a></td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images_algebra/parallax10.jpg"></div>
+</div>
+<div class="section white z-depth-5">
+    <h2 class="header center-align">Gestión de Grupos</h2>
+    <div class="row container">
+        <h4 class="grey-text text-darken-3 lighten-3">
+            Registrar grupo
+        </h4>
+    </div>
+    <div class="row container">
+        <form action="/insertarGrupo" method="POST" id="insertarGrupo">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="insertaGrupo" name="grupo" type="text" class="validate">
+                    <label for="insertaGrupo">Nombre del grupo</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="row container">
+        <table class="highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>Grupo</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each grupos}}
+                <tr>
+                    <td>{{nom_gru}}</td>
+                    <td><a onclick="document.getElementById('grupo').value = '{{nom_gru}}';
+                            document.getElementById('id_grupo_modificar').value = '{{id_gru}}'"
+                            class="modal-trigger btn-flat" href="#modal_modificar_grupo">Modificar</a></td>
+                    <td><a onclick="document.getElementById('grupo_seleccionado').innerHTML = '{{nom_gru}}';
+                            document.getElementById('id_grupo').value = '{{id_gru}}'" class="modal-trigger btn-flat"
+                            href="#modal_eliminar_grupo">Eliminar</a></td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td> --- </td>
+                    <td> --- </td>
+                    <td> --- </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="modal_modificar" class="modal">
+    <div class="modal-content">
+        <h4 class="header">Modificar tema</h4>
+        <form action="/modificarTema" method="POST" id="modificar_tema">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="id_tema_modificar" name="n_tema_modificar" type="text" hidden>
+                    <input id="tema" placeholder="Tema" name="tema_modificar" type="text" class="validate">
+                    <label for="tema">Tema</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+<div id="modal_eliminar" class="modal">
+    <div class="modal-content">
+        <h4 class="header center-align">¿Esta seguro que desea eliminar el siguiente elemento?</h4>
+        <form action="/eliminarTema" method="POST" id="eliminar_tema">
+            <h5 class="row center-align" id="tema_seleccionado"></h5>
+            <div class="row">
+                <input type="text" id="id_tema" value="" name="tema_eliminar" hidden>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+
+<div id="modal_modificar_apoyo" class="modal">
+    <div class="modal-content">
+        <h4 class="header">Modificar apoyo</h4>
+        <form action="/modificarApoyo" method="POST" id="uploadForm2" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" id="id_apoyo_modificar" name="id_apoyo_modificar" hidden>
+                    <input id="nombre_apoyo_modificar" placeholder="nombre/descripción" name="nombre_apoyo_modificar" type="text" class="validate">
+                    <label for="insertaApoyo">Nombre o descripción del apoyo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="hipervinculo_apoyo_modificar" placeholder="link" name="hipervinculo_apoyo_modificar" class="materialize-textarea"></textarea>
+                    <label for="hipervinculo_apoyo_modificar">Hipervinculo</label>
+                </div>
+            </div>
+            <div class="row">
+                <p id="archivo_anterior_modificar"></p>
+                <p>Si desea mantener el PDF anterior, solamente deje el espacio de archivo en blanco</p>
+            </div>
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Cargar PDF</span>
+                        <input type="file" id="archivo_apoyo_modificar" name="archivo_apoyo_modificar" onchange="archivo(this)">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                    <div id="avisos"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="apoyo_tema" id="select_apoyo_modificar">
+                        <option value="" disabled selected>Escoge tu opción</option>
+                        {{#each temas}}
+                        <option value={{id_tem}}>{{nom_tem}}</option>
+                        {{/each}}
+                    </select>
+                    <label>Tema</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" id="send2" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+<div id="modal_eliminar_apoyo" class="modal">
+    <div class="modal-content">
+        <h4 class="header center-align">¿Esta seguro que desea eliminar el siguiente elemento?</h4>
+        <form action="/eliminarApoyo" method="POST" id="eliminar_apoyo">
+            <h5 class="row center-align" id="apoyo_seleccionado"></h5>
+            <div class="row">
+                <input type="text" id="id_apoyo" value="" name="apoyo_eliminar" hidden>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+
+<div id="modal_modificar_grupo" class="modal">
+    <div class="modal-content">
+        <h4 class="header">Modificar grupo</h4>
+        <form action="/modificarGrupo" method="POST" id="modificar_grupo">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="id_grupo_modificar" name="n_grupo_modificar" type="text" hidden>
+                    <input id="grupo" name="grupo_modificar" type="text" class="validate">
+                    <label for="grupo">Tema</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+<div id="modal_eliminar_grupo" class="modal">
+    <div class="modal-content">
+        <h4 class="header center-align">¿Esta seguro que desea eliminar el siguiente elemento?</h4>
+        <form action="/eliminarGrupo" method="POST" id="eliminar_grupo">
+            <br>
+            <h5 class="row center-align" id="grupo_seleccionado"></h5>
+            <div class="row">
+                <input type="text" id="id_grupo" value="" name="grupo_eliminar" hidden>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Aceptar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, dismissible = false);
+    });
+    function verTeclado() {
+        let teclado = document.getElementById('tecladoDisparador');
+        let teclado2 = document.getElementById('tecladoDisparador2');
+        if (teclado.classList.contains('scale-out')) {
+            teclado.classList.remove('scale-out');
+            teclado.classList.add('scale-in');
+        } else {
+            teclado.classList.remove('scale-in');
+            teclado.classList.add('scale-out');
+        }
+        if (teclado2.classList.contains('scale-out')) {
+            teclado2.classList.remove('scale-out');
+            teclado2.classList.add('scale-in');
+        } else {
+            teclado2.classList.remove('scale-in');
+            teclado2.classList.add('scale-out');
+        }
+    }
+</script>
+<script>
+    function suma(pregunta) {
+        document.getElementById(pregunta).value += "+";
+    }
+    function resta(pregunta) {
+        document.getElementById(pregunta).value += "-";
+    }
+    function por(pregunta) {
+        document.getElementById(pregunta).value += "x";
+    }
+    function entre(pregunta) {
+        document.getElementById(pregunta).value += "/";
+    }
+    function pi(pregunta) {
+        document.getElementById(pregunta).value += "π";
+    }
+    function pordiez(pregunta) {
+        document.getElementById(pregunta).value += "x₁₀";
+    }
+    function parentesisA(pregunta) {
+        document.getElementById(pregunta).value += "(";
+    }
+    function parentesisB(pregunta) {
+        document.getElementById(pregunta).value += ")";
+    }
+    function raiz(pregunta) {
+        document.getElementById(pregunta).value += "√";
+    }
+    function igual(pregunta) {
+        document.getElementById(pregunta).value += "=";
+    }
+    function borrar(pregunta) {
+        document.getElementById(pregunta).value = document.getElementById('insertarPregunta').value.substring(0, document.getElementById('insertarPregunta').value.length - 1);
+    }
+    function exponente(pregunta) {
+        document.getElementById(pregunta).value += "^";
+    }
+    document.getElementById('tecladoDisparador').addEventListener("keydown", presiona, false);
+    document.getElementById('tecladoDisparador2').addEventListener("keydown", presiona, false);
+    function presiona(e) {
+
+        if (e.code == "Backspace") {
+            document.getElementById('insertarPregunta').value = document.getElementById('insertarPregunta').value.substring(0, document.getElementById('insertarPregunta').value.length - 1);
+        } else if (e.keyCode > 48) {
+            document.getElementById('insertarPregunta').value += e.key;
+        }
+    }
+</script>
+
+<script type="text/javascript" src="js-admin/upracticas.js"> </script>

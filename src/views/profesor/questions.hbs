@@ -1,0 +1,362 @@
+<!--
+<div clas="row">
+    <div class="col s12">
+        <div class="container">
+            <div class="signup-box">
+                <div id="quizz" class="quizz">
+                    <h1>Agregar una pregunta</h1>
+                    <form name="questions" id="questions" class="form"
+                        method="POST" action="/Addquestion">
+                        Ingresa la pregunta: <input type='text'
+                            id='pregunta' name="pregunta">
+                        iniciso a: <input type='text' id='a' name="a">
+                        inciso b: <input type='text' id='b' name="b">
+                        inciso c: <input type='text' id='c' name="c">
+                        inciso d: <input type='text' id='d' name="d">
+                        Ingresa el tema:
+                        <div class="input-field col s12">
+                            <select name="tema" id="tema">
+                                <option value="" disabled selected>Escoge
+                                    una opción</option>
+                                {{#each temas}}
+                                <option value={{id_tem}}>{{nom_tem}}</option>
+                                {{/each}}
+                            </select>
+                            <label>Temas</label>
+                        </div>
+                        Ingresa la dificultad:
+                        <div class="input-field col s12">
+                            <select name="dificultad" id="dificultad">
+                                <option value="" disabled selected>Escoge
+                                    una opción</option>
+                                <option value="1">Fácil</option>
+                                <option value="2">Normal</option>
+                                <option value="1">Díficil</option>
+                            </select>
+                            <label>Dificultad</label>
+                        </div>
+                        <div>
+                            <button class="btn waves-effect waves-light"
+                                type="submit" name="action">Agregar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                    <p id="avisos"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inicio chido -->
+<link rel="stylesheet" type="text/css"
+    href="app-assets/css/pages/app-file-manager.min.css">
+<div class="row">
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+        <div class="container">
+            <div class="section app-file-manager-wrapper">
+                <!-- File Manager app overlay -->
+                <div class="app-file-overlay"></div>
+                <!-- /File Manager app overlay -->
+                <!-- sidebar left start -->
+                <div class="sidebar-left">
+                    <!--left sidebar of file manager start -->
+                    <div class="app-file-sidebar display-flex">
+                        <!-- App File sidebar - Left section Starts -->
+                        <div class="app-file-sidebar-left">
+                            <!-- sidebar close icon starts -->
+                            <span class="app-file-sidebar-close
+                                hide-on-med-and-up"><i class="material-icons">close</i></span>
+                            <!-- sidebar close icon ends -->
+                            <div class="input-field add-new-file mt-0">
+                                <!-- Add File Button -->
+                                <form name="questions" id="questions"
+                        method="POST" action="/Addquestion">
+                        Ingresa la pregunta: <input type='text'
+                            id='pregunta' name="pregunta">
+                        iniciso a: <input type='text' id='a' name="a">
+                        inciso b: <input type='text' id='b' name="b">
+                        inciso c: <input type='text' id='c' name="c">
+                        inciso d: <input type='text' id='d' name="d">
+                        Ingresa el tema:
+                            <select name="tema" id="tema">
+                                <option value="" disabled selected>Selecciona tema</option>
+                                {{#each temas}}
+                                <option value={{id_tem}}>{{nom_tem}}</option>
+                                {{/each}}
+                            </select>
+                        Ingresa la dificultad:
+                            <select name="dificultad" id="dificultad">
+                                <option value="" disabled selected>Selecciona dificultad</option>
+                                <option value="1">Fácil</option>
+                                <option value="2">Normal</option>
+                                <option value="1">Díficil</option>
+                            </select>
+                            
+                        <div>
+                            <button class="btn waves-effect waves-light indigo lighten-1"
+                                type="submit" name="action">Agregar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                    <p id="avisos"></p>
+                            </div>
+                            <div class="app-file-sidebar-content ps">
+                                <!-- App File Left Sidebar - Drive Content Starts -->
+                                <span class="app-file-label">Temas</span>
+                                <div class="collection file-manager-drive mt-3">
+                                    {{#each temas}}
+                                    <a href="#" class="collection-item
+                                        file-item-action">
+                                        <div class="fonticon-wrap display-inline
+                                            mr-3">
+                                            <i class="material-icons">assignment</i>
+                                        </div>
+                                        <span>{{nom_tem}}</span>
+                                    </a>
+                                    {{/each}}
+                                </div>
+                                <!-- App File Left Sidebar - Drive Content Ends -->
+                                <div class="ps__rail-x" style="left: 0px;
+                                    bottom: 0px;"><div class="ps__thumb-x"
+                                        tabindex="0" style="left: 0px; width:
+                                        0px;"></div></div><div
+                                    class="ps__rail-y" style="top: 0px; right:
+                                    0px;"><div class="ps__thumb-y" tabindex="0"
+                                        style="top: 0px; height: 0px;"></div></div></div>
+                        </div>
+                    </div>
+                    <!--left sidebar of file manager start -->
+                </div>
+                <!--/ sidebar left end -->
+                <!-- content-right start -->
+                <div class="content-right">
+                    <!-- file manager main content start -->
+                    <div class="app-file-area">
+                        <!-- File App Content Area -->
+                        <!-- App File Header Starts -->
+                        <div class="app-file-header">
+                            <!-- Header search bar starts -->
+                            <div class="sidebar-toggle show-on-medium-and-down
+                                mr-1 ml-1">
+                                <i class="material-icons">menu</i>
+                            </div>
+                            <div class="app-file-header-search">
+                                <div class="input-field m-0">
+                                    <i class="material-icons prefix">search</i>
+                                    <input type="search" id="tema-search"
+                                        placeholder="Buscar">
+                                </div>
+                            </div>
+                            <!-- Header search bar Ends -->
+
+                        </div>
+                        <!-- App File Header Ends -->
+
+                        <!-- App File Content Starts -->
+                        <div class="app-file-content ps">
+                            <h6 class="font-weight-700 mb-3">Preguntas</h6>
+
+                            <!-- App File - Recent Accessed Files Section Starts -->
+                            <div class="row app-file-recent-access mb-3">
+                                <div class="col xl3 l6 m3 s12">
+                                    <div class="card box-shadow-none mb-1
+                                        app-file-info">
+                                        <div class="card-content">
+                                            <div class="app-file-content-logo
+                                                grey lighten-4">
+                                                <div class="fonticon">
+                                                    <i class="material-icons">more_vert</i>
+                                                </div>
+                                                <img class="recent-file"
+                                                    src="app-assets/images/icon/question.png"
+                                                    height="38" width="30"
+                                                    alt="Card image cap">
+                                            </div>
+                                            <div
+                                                class="app-file-recent-details">
+                                                <div class="app-file-name
+                                                    font-weight-700">Pregunta</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- App File - Recent Accessed Files Section Ends -->
+                                <div class="ps__rail-x" style="left: 0px;
+                                    bottom:
+                                    0px;"><div class="ps__thumb-x" tabindex="0"
+                                        style="left: 0px; width: 0px;"></div></div><div
+                                    class="ps__rail-y" style="top: 0px; right:
+                                    0px;"><div class="ps__thumb-y" tabindex="0"
+                                        style="top: 0px; height: 0px;"></div></div></div>
+                        </div>
+
+                        <!-- file manager main content end  -->
+                    </div>
+                    <!-- content-right end -->
+                    <!-- App File sidebar - Right section Starts -->
+                    <div class="app-file-sidebar-info ps">
+                        <div class="card box-shadow-none m-0 pb-1">
+                            <div class="card-header display-flex
+                                justify-content-between align-items-center">
+                                <h6 class="m-0">Pregunta</h6>
+                                <div class="app-file-action-icons display-flex
+                                    align-items-center">
+                                    <i class="material-icons mr-10">update</i>
+                                    <i class="material-icons mr-10">delete</i>
+                                    <i class="material-icons close-icon">close</i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="tab-content">
+                                    <div class="details-tab active"
+                                        id="details">
+                                        <div class="display-flex
+                                            align-items-center
+                                            flex-column pb-2 pt-4">
+                                            <img
+                                                src="app-assets/images/icon/question.png"
+                                                alt="PDF" height="42" width="35"
+                                                class="mt-5 mb-5">
+                                        </div>
+                                        <div class="divider mt-5 mb-5"></div>
+                                        <div class="pt-6">
+                                            <span class="app-file-label">Info</span>
+                                            <div class="display-flex
+                                                justify-content-between
+                                                align-items-center mt-6">
+                                                <p>Pregunta: </p>
+                                                <p class="font-weight-700"> 2 - 1</p>
+                                            </div>
+                                            <div class="display-flex
+                                                justify-content-between
+                                                align-items-center mt-6">
+                                                <p>Opciones</p>
+                                                <p class="font-weight-700">Opciones</p>
+                                                <a href="javascript:void(0);"><i
+                                                        class="material-icons">update</i></a>
+                                            </div></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps__rail-x" style="left: 0px; bottom:
+                                0px;"><div
+                                    class="ps__thumb-x" tabindex="0"
+                                    style="left: 0px;
+                                    width: 0px;"></div></div><div
+                                class="ps__rail-y"
+                                style="top: 0px; right: 0px;"><div
+                                    class="ps__thumb-y"
+                                    tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                        <!-- App File sidebar - Right section Ends -->
+                        <br><br><br><br><br>
+                    </div>
+                    <!-- START RIGHT SIDEBAR NAV -->
+                    <aside id="right-sidebar-nav">
+                        <div id="slide-out-right" class="slide-out-right-sidenav
+                            sidenav
+                            rightside-navigation right-aligned">
+                            <div class="row">
+                                <div class="slide-out-right-title">
+                                    <div class="col s12 border-bottom-1 pb-0
+                                        pt-1">
+                                        <div class="row">
+                                            <div class="col s2 pr-0 center">
+                                                <i class="material-icons
+                                                    vertical-text-middle"><a
+                                                        href="#"
+                                                        class="sidenav-close">clear</a></i>
+                                            </div>
+                                            <div class="col s10 pl-0">
+                                                <ul class="tabs">
+                                                    <li class="tab col s4 p-0">
+                                                        <a href="#reportes"
+                                                            class="active">
+                                                            <span>Reportes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="indicator"
+                                                        style="left:
+                                                        0px; right: 188px;"></li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slide-out-right-body row pl-3 ps
+                                    ps--active-y">
+                                    <div id="reportes" class="col s12 pb-0
+                                        active">
+                                        <div class="collection border-none
+                                            mb-0">
+                                            <ul class="collection
+                                                right-sidebar-chat p-0
+                                                mb-0">
+                                                <a href="javascript:void(0);">
+                                                    <li class="collection-item
+                                                        right-sidebar-chat-item
+                                                        display-flex avatar
+                                                        pl-5 pb-0"
+                                                        data-target="slide-out-chat">
+                                                        <i
+                                                            class="material-icons">chrome_reader_mode</i>
+                                                    </span>
+                                                    <div class="user-content">
+                                                        <h6
+                                                            class="line-height-0">Reporte
+                                                            1IV2</h6>
+                                                    </div>
+                                                    <span
+                                                        class="secondary-content
+                                                        medium-small">29-02-20</span>
+                                                </li>
+                                            </a>
+                                            <a href="javascript:void(0);">
+                                                <li class="collection-item
+                                                    right-sidebar-chat-item
+                                                    sidenav-trigger display-flex
+                                                    avatar
+                                                    pl-5 pb-0"
+                                                    data-target="slide-out-chat">
+                                                    <i class="material-icons">chrome_reader_mode</i>
+                                                </span>
+                                                <div class="user-content">
+                                                    <h6 class="line-height-0">Reporte
+                                                        1IV3</h6>
+                                                </div>
+                                                <span class="secondary-content
+                                                    medium-small">28-02-20</span>
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="ps__rail-x" style="left: 0px; bottom:
+                                0px;"><div class="ps__thumb-x" tabindex="0"
+                                    style="left: 0px; width: 0px;"></div></div><div
+                                class="ps__rail-y" style="top: 0px; height:
+                                624px; right: 0px;"><div class="ps__thumb-y"
+                                    tabindex="0" style="top: 0px; height:
+                                    308px;"></div></div></div>
+                    </div>
+                </div>
+
+            </aside>
+            <!-- END RIGHT SIDEBAR NAV -->
+        </div>
+        <div class="content-overlay"></div>
+        
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+</script>

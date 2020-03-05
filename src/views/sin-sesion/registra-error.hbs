@@ -1,0 +1,338 @@
+<!-- Registro -->
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="/images-registro/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/fonts-registro/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/vendor-registro/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/css-registro/util.css">
+<link rel="stylesheet" type="text/css" href="/css-registro/main.css">
+<!--===============================================================================================-->
+<!-- Fin de registro -->
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form" action="/registrar" method="POST">
+            <span class="contact100-form-title">
+                Registro
+            </span>
+
+            <div class="wrap-input100 validate-input" data-validate="Nombre!">
+                <span class="label-input100">Nombre</span>
+                {{#if msg.nombre}}
+                <input class="input100" type="text" name="nom" id="nom" placeholder="Ingresa tu nombre">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="anombre">El nombre que ingresó no es válido</span>
+                {{else}}
+                <input class="input100" type="text" value="{{data1.nom_us}}" name="nom" id="nom"
+                    placeholder="Ingresa tu nombre">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="anombre"></span>
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="AppellidoP!">
+                <span class="label-input100">Appellido Paterno</span>
+                {{#if msg.appat}}
+                <input class="input100" type="text" name="appat" id="appat" placeholder="Ingresa tu Appellido Paterno">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aappat">El apellido es inválido</span>
+                {{else}}
+                <input class="input100" type="text" name="appat" value="{{data1.appat_us}}" id="appat"
+                    placeholder="Ingresa tu Appellido Paterno">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aappat"></span>
+                {{/if}}
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="AppellidoM!">
+                <span class="label-input100">Appellido Materno</span>
+                {{#if msg.apmat}}
+                <input class="input100" type="text" name="apmat" id="apmat" placeholder="Ingresa tu Appellido Materno">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aapmat">El apellido es inválido</span>
+                {{else}}
+                <input class="input100" type="text" name="apmat" value="{{data1.apmat_us}}" id="apmat"
+                    placeholder="Ingresa tu Appellido Materno">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aapmat"></span>
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 input100-select">
+                <span class="label-input100">Sexo</span>
+                <div>
+                    <select class="selection-2" id="sex" name="sex">
+                        <option value="1">Hombre</option>
+                        <option value="2">Mujer</option>
+                        <option value="3">Prefiero no decirlo</option>
+                    </select>
+                </div>
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="asex"></span>
+                {{#if msg.sex}}
+                <span class="label-input100" id="asex">El sexo es inválido, favor de no modificar ningún valor</span>
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 input100-select">
+                <span class="label-input100">Tipo de Usuario</span>
+                <div>
+                    <select class="selection-2" id="tipo" name="tipo">
+                        <option value="1">Alumno</option>
+                        <option value="2">Profesor</option>
+                    </select>
+                </div>
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="atipo"></span>
+                {{#if msg.tip}}
+                <span class="label-input100" id="atipo">El tipo de usuario es inválida, favor de no modificar ningún
+                    valor</span>
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Usuario!">
+                <span class="label-input100">Usuario</span>
+                {{#if msg.usnam}}
+                <input class="input100" type="text" name="usnam" id="username" placeholder="Ingresa tu Usuario">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="ausername">El nombre de usuario no es aceptable</span>
+                {{else}}
+                {{#if repetidoUsnam}}
+                <input class="input100" type="text" name="usnam" id="username" placeholder="Ingresa tu Usuario">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="ausername">El nombre de usuario ya está en uso</span>
+                {{else}}
+                <input class="input100" type="text" name="usnam" id="username" value="{{data1.usnam_us}}"
+                    placeholder="Ingresa tu Usuario">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="ausername"></span>
+                {{/if}}
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Email valido requerido: ex@abc.xyz">
+                <span class="label-input100">Correo Electrónico</span>
+                {{#if msg.cor}}
+                <input class="input100" type="email" name="cor" id="email" placeholder="Ingrsa tu correo">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aemail">El correo electronico no es aceptable</span>
+                {{else}}
+                {{#if repetidoCorreo}}
+                <input class="input100" type="email" name="cor" id="email" placeholder="Ingrsa tu correo">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aemail">El correo electronico ya está en uso</span>
+                {{else}}
+                <input class="input100" type="email" name="cor" value="{{data1.cor_us}}" id="email"
+                    placeholder="Ingresa tu correo">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aemail"></span>
+                {{/if}}
+                {{/if}}
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Contraseña!">
+                <span class="label-input100">Contraseña</span>
+                {{#if msg.pas}}
+                <input class="input100" type="password" id="pas" name="pas" placeholder="Ingresa tu Contraseña">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="apas">Las contraseñas no coinciden o no son aceptables</span>
+                {{else}}
+                <input class="input100" type="password" id="pas" name="pas" placeholder="Ingresa tu Contraseña">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="apas"></span>
+                {{/if}}
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Contraseña!">
+                <span class="label-input100">Confirma contraseña</span>
+                <input class="input100" type="password" id="conf" name="conf"
+                    placeholder="Ingresa tu contraseña nuevamente">
+                <span class="focus-input100"></span>
+                <span class="label-input100" id="aconf"></span>
+            </div>
+          
+                <a href="/https://drive.google.com/file/d/1hU8Y00DOJgpoIsLK5aZAWhQH2eenwlWu/view?usp=sharing" target="_blank">Aviso de Privacidad</a>
+                <div class="wrap-input100 validate-input">
+                    <span class="label-input100">Acepto los términos y condiciones</span>
+                    <input class="" type="radio" id="ap" name="ap" value="si">
+                    <span class="label-input100">Si</span>
+                    <input class="" type="radio" id="ap" name="ap" value="no" checked>
+                    <span class="label-input100">No</span>
+                    {{#if msg.radio}}
+                    <br><span class="label-input100">Para poder registrarse, debe de aceptar los términos y condiciones</span>
+                    {{/if}}
+                </div>
+                <div class="container-contact100-form-btn">
+                    <div class="wrap-contact100-form-btn">
+                        <div class="contact100-form-bgbtn"></div>
+
+                        <button class="contact100-form-btn" id="send">
+                            <span>
+                                Registrar
+                                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="/vendor-registro/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/bootstrap/js/popper.js"></script>
+<script src="/vendor-registro/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/select2/select2.min.js"></script>
+<script>
+    $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+</script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/daterangepicker/moment.min.js"></script>
+<script src="/vendor-registro/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/vendor-registro/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/js-registro/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-23581568-13');
+</script>
+<!--
+<div class="container">
+    <form action="/registrar" method="POST">
+        <p>Nombre: </p>
+        {{#if msg.nombre}}
+        <input type="text" maxlength="50" placeholder="nombre" name="nom" id="nom" required>
+        <div>El nombre es invalido</div>
+        {{else}}
+        <input type="text" maxlength="50" placeholder="nombre" value="{{data1.nom_us}}" name="nom" id="nom" required>
+        {{/if}}
+        <p>Apellido Paterno: </p>
+        {{#if msg.appat}}
+        <input type="text" maxlength="30" placeholder="apellido paterno" name="appat" required>
+        <div>El apellido paterno es invalido</div>
+        {{else}}
+        <input type="text" maxlength="30" placeholder="apellido paterno" value="{{data1.appat_us}}" name="appat"
+            required>
+        {{/if}}
+        <p>Apellido Materno: </p>
+        {{#if msg.apmat}}
+        <input type="text" maxlength="30" placeholder="apellido materno" name="apmat" required>
+        <div>El apellido materno es invalido</div>
+        {{else}}
+        <input type="text" maxlength="30" placeholder="apellido materno" value="{{data1.apmat_us}}" name="apmat"
+            required>
+        {{/if}}
+        <p>Sexo: </p>
+        {{#if msg.sex}}
+        <select name="sex">
+            <option value="1">
+                Hombre
+            </option>
+            <option value="2">
+                Mujer
+            </option>
+            <option value="3">
+                Prefiero no decirlo
+            </option>
+        </select>
+        <div>El sexo es invalido</div>
+        {{else}}
+        <select name="sex">
+            <option value="1">
+                Hombre
+            </option>
+            <option value="2">
+                Mujer
+            </option>
+            <option value="3">
+                Prefiero no decirlo
+            </option>
+        </select>
+        {{/if}}
+        <p>Tipo usuario: </p>
+        {{#if msg.tip}}
+        <select name="tipo">
+            <option value="1">
+                Alumno
+            </option>
+            <option value="2">
+                Docente
+            </option>
+        </select>
+        <div>El tipo de usuario es invalido</div>
+        {{else}}
+        <select name="tipo">
+            <option value="1">
+                Alumno
+            </option>
+            <option value="2">
+                Docente
+            </option>
+        </select>
+        {{/if}}
+        <p>Username: </p>
+        {{#if msg.usnam}}
+        <input type="text" maxlength="50" placeholder="username" name="usnam" required>
+        <div>El username es invalido</div>
+        {{else}}
+        {{#if repetidoUsnam}}
+        <input type="text" maxlength="50" placeholder="username" name="usnam" required>
+        <div>El username ya esta en uso</div>
+        {{else}}
+        <input type="text" maxlength="50" placeholder="username" value="{{data1.usnam_us}}" name="usnam" required>
+        {{/if}}
+        {{/if}}
+        <p>Correo: </p>
+        {{#if msg.cor}}
+        <input type="email" maxlength="100" placeholder="email" name="cor" required>
+        <div>El correo electronico es invalido o ya esta en uso</div>
+        {{else}}
+        {{#if repetidoCorreo}}
+        <input type="email" maxlength="100" placeholder="email" name="cor" required>
+        <div>El correo electronico ya esta en uso</div>
+        {{else}}
+        <input type="email" maxlength="100" placeholder="email" value="{{data1.cor_us}}" name="cor" required>
+        {{/if}}
+        {{/if}}
+        <p>Contraseña: </p>
+        {{#if msg.pas}}
+        <input type="password" maxlength="100" placeholder="password" name="pas" required>
+        <p>Confirmar contraseña: </p>
+        <input type="password" maxlength="100" placeholder="confirma password" name="conf" required>
+        <div>Contraseña invalida, campos no concuerdan</div>
+        {{else}}
+        <input type="password" maxlength="100" placeholder="password" name="pas" required>
+        <p>Confirmar contraseña: </p>
+        <input type="password" maxlength="100" placeholder="confirma password" name="conf" required>
+        {{/if}}
+        <button type="submit">Aceptar</button>
+
+    </form>
+</div>-->
+
+<script type="text/javascript" src="js/valreg.js">
+</script>

@@ -1,0 +1,185 @@
+<style>
+    .fraction {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0.2em 0.4ex;
+        text-align: center;
+    }
+
+    .fraction>span {
+        display: block;
+        padding-top: 0.15em;
+    }
+
+    .fraction span.fdn {
+        border-top: thin solid black;
+    }
+
+    .fraction span.bar {
+        display: none;
+    }
+</style>
+<center>
+    <h1>Ley de los gases</h1>
+    <h3>En estra seccion trabajeremos con las siguientes ecuaciones: </h3>
+    <br>
+    <h3>Ley de boyle-mariotte</h3>
+    <h4>P<SUB>2</SUB>V<sub>2</sub> = P<sub>1</sub>V<sub>1</sub></h4>
+    <br>
+    <h3>Ley de Charles</h3>
+</center>
+<center>
+    <div class="fraction">
+        <span class="fup"><i>V</i><sub>1</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>1</sub></span>
+    </div>
+    =
+    <div class="fraction">
+        <span class="fup"><i>V</i><sub>2</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>2</sub></span>
+    </div>
+</center>
+<center>
+    <br>
+    <h3>Ley de Gay-Lussac</h3>
+    <div class="fraction">
+        <span class="fup"><i>P</i><sub>1</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>1</sub></span>
+    </div>
+    =
+    <div class="fraction">
+        <span class="fup"><i>P</i><sub>2</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>2</sub></span>
+    </div>
+    <br>
+    <br>
+    <h3>Ecuación general del Estado Gaseoso</h3>
+    <div class="fraction">
+        <span class="fup"><i>P</i><sub>1</sub><i>V</i><sub>1</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>1</sub></span>
+    </div>
+    =
+    <div class="fraction">
+        <span class="fup"><i>P</i><sub>2</sub><i>V</i><sub>2</sub></span>
+        <span class="bar">/</span>
+        <span class="fdn"><i>T</i><sub>2</sub></span>
+    </div>
+</center>
+<br>
+<br>
+<center><h3>Instrucciones</h3></center>
+<br>
+<center><h4>Para este tipo de problemas deberas llenar lo siguientes datos, con las siguientes condiciones, si una cantidad es constante debes poner C, y si el la que debemos encontrar deberas pones X.</h4></center>
+<br>
+<br>
+<center>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Datos</th>
+                <th scope="col">Valores</th>
+                <th scope="col">Unidades</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Volumen inicial =</td>
+                <td> <input type="text" id="VI" placeholder="Volumen" required > </td>
+                <td>
+                    <select id="UVI">
+                        <option value="0">Unidades</option>
+                        <option value="L">L</option>
+                        <option value="ml">mL</option>
+                        <option value="galon">galón</option>
+                        <option value="pie cubico">pie cubico</option>
+                        <option value="m cubico">m cubico</option>
+                        <option value="cm cubico">cm cubico</option>
+                        <option value="dm cubico">dm cubico</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Presión inicial = </td>
+                <td><input type="text" id="PI" placeholder="Presión" required></td>
+                <td>
+                    <select id="UPI" required>
+                        <option value="0">Unidades</option>
+                        <option value="atm">atm</option>
+                        <option value="mmHg">mmHg</option>
+                        <option value="cmHg">cmHg</option>
+                        <option value="pulgHG">pulgHG</option>
+                        <option value="kg/cm cuadrados">kg/cm cuadrados</option>
+                        <option value="torr">torr</option>
+                        <option value="Lb / pulg cuadradas">Lb / pulg cuadradas</option>
+                        <option value="bar">bar</option>
+                        <option value="pascales">pascales</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Temperatura inicial = </td>
+                <td><input type="text" id="TI" placeholder="Temperatura"></td>
+                <td><select id="UTI">
+                        <option value="0">Unidades</option>
+                        <option value="K">K</option>
+                        <option value="R">R</option>
+                        <option value="F">°F</option>
+                        <option value="C">°C</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Volumen final = </td>
+                <td><input type="text" id="VF" placeholder="Volumen"></td>
+                <td><select id="UVF">
+                        <option value="0">Unidades</option>
+                        <option value="L">L</option>
+                        <option value="ml">mL</option>
+                        <option value="galon">galón</option>
+                        <option value="pie cubico">pie cubico</option>
+                        <option value="m cubico">m cubico</option>
+                        <option value="cm cubico">cm cubico</option>
+                        <option value="dm cubico">dm cubico</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Presión Final = </td>
+                <td><input type="text" id="PF" placeholder="Presión"></td>
+                <td><select id="UPF">
+                        <option value="0">Unidades</option>
+                        <option value="atm">atm</option>
+                        <option value="mmHg">mmHg</option>
+                        <option value="cmHg">cmHg</option>
+                        <option value="pulgHG">pulgHG</option>
+                        <option value="kg/cm cuadrados">kg/cm cuadrados</option>
+                        <option value="torr">torr</option>
+                        <option value="Lb / pulg cuadradas">Lb / pulg cuadradas</option>
+                        <option value="bar">bar</option>
+                        <option value="pascales">pascales</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Temperatura Final = </td>
+                    <td><input type="text" id="TF" placeholder="Temperatura"></td> 
+                   <td><select id="UTF">
+                        <option value="0">Unidades</option>
+                        <option value="K">K</option>
+                        <option value="R">R</option>
+                        <option value="F">°F</option>
+                        <option value="C">°C</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="button" class="btn btn-success" id="Resolver">Resolver</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>    
+</center>
+<script src="JS/gases.js"></script>

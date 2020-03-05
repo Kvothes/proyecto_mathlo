@@ -1,0 +1,29 @@
+<ul id="slide-out" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images_algebra/parallax13.png">
+            </div>
+            <a><img class="circle" src="images_algebra/usuario2.jpg"></a>
+            <a><span class="white-text name">{{usuario.nom_usu}}</span></a>
+            <a><span class="white-text email">{{usuario.cor_usu}}</span></a>
+        </div>
+    </li>
+    <li><a href="/#!"><i class="material-icons">cloud</i>Inicio</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="/logout"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+</ul>
+<!--<div class="background amber lighten-3">-->
+<a href="#" data-target="slide-out" class="sidenav-trigger z-depth-4 btn-floating btn-large cyan pulse left"><i
+        class="medium material-icons left">menu</i></a>
+<!--</div>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, inDuration = 500);
+    });
+
+</script>
