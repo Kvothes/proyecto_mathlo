@@ -65,55 +65,145 @@
           <form name="questions" id="questions"
                         method="POST" action="/Addquestion">
             <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Pregunta" type='text'
-                            id='pregunta' name="pregunta">
-                
+              <div class="input-field col s12" style="margin-bottom: 0px;">
+                  <p>Pregunta: 
+                <span id='math-field-pregunta' style="width: 100%; min-height:40px; margin-bottom: 0px;"></span></p>
+              </div>
+              <div class="input-field col s12" style="margin-top: 0px;">
+                  <input id="latex-pregunta" type="text" name="pregunta" readonly>
               </div>
               <ul class="collapsible">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
                         <div class="collapsible-body text-reset">
-                            <a class="btn" id="btn_raiz">\sqrt{x}</a>
-                            <a class="btn">+</a>
-                            <a class="btn">+</a>
-                            <a class="btn">+</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_sqrt" onclick="mathField.cmd('\\sqrt');
+                            mathField.focus();" style="width: 90px;">√</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pm" onclick="mathField.cmd('\\pm');
+                            mathField.focus();" style="width: 90px;">∓</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_mp" onclick="mathField.cmd('\\mp');
+                            mathField.focus();" style="width: 90px;">±</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_frac" onclick="mathField.cmd('\\frac');
+                            mathField.focus();" style="width: 90px;">x/x</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField.cmd('^');
+                            mathField.focus();" style="width: 90px;">^</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField.cmd('\\cdot');
+                            mathField.focus();" style="width: 90px;">*</a>
                         </div>
                     </li>
                 </ul>
                 
             </div>
             <div class="row">
-              <div class="input-field col s10">
-                <input placeholder="Opción A" type='text' id='a' name="a">
+              <div class="input-field col s12" style="margin-bottom: 0px;">
+                  <p>Opción A: 
+                <span id='math-field-opcA' style="width: 100%; min-height:40px; margin-bottom: 0px;"></span></p>
               </div>
-              <div class="input-field col s2">
-                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              <div class="input-field col s12" style="margin-top: 0px;">
+                  <input id="latex-opcA" type="text" name="a" readonly>
               </div>
+              <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
+                        <div class="collapsible-body text-reset">
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_sqrt" onclick="mathField_opcA.cmd('\\sqrt');
+                            mathField_opcA.focus();" style="width: 90px;">√</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pm" onclick="mathField_opcA.cmd('\\pm');
+                            mathField_opcA.focus();" style="width: 90px;">∓</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_mp" onclick="mathField_opcA.cmd('\\mp');
+                            mathField_opcA.focus();" style="width: 90px;">±</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_frac" onclick="mathField_opcA.cmd('\\frac');
+                            mathField_opcA.focus();" style="width: 90px;">x/x</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcA.cmd('^');
+                            mathField_opcA.focus();" style="width: 90px;">^</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcA.cmd('\\cdot');
+                            mathField_opcA.focus();" style="width: 90px;">*</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="row">
-              <div class="input-field col s10">
-                <input placeholder="Opción B" type='text' id='b' name="b">
+              <div class="input-field col s12" style="margin-bottom: 0px;">
+                  <p>Opción B: 
+                <span id='math-field-opcB' style="width: 100%; min-height:40px; margin-bottom: 0px;"></span></p>
               </div>
-              <div class="input-field col s2">
-                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              <div class="input-field col s12" style="margin-top: 0px;">
+                  <input id="latex-opcB" type="text" name="b" readonly>
               </div>
+              <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
+                        <div class="collapsible-body text-reset">
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_sqrt" onclick="mathField_opcB.cmd('\\sqrt');
+                            mathField_opcB.focus();" style="width: 90px;">√</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pm" onclick="mathField_opcB.cmd('\\pm');
+                            mathField_opcB.focus();" style="width: 90px;">∓</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_mp" onclick="mathField_opcB.cmd('\\mp');
+                            mathField_opcB.focus();" style="width: 90px;">±</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_frac" onclick="mathField_opcB.cmd('\\frac');
+                            mathField_opcB.focus();" style="width: 90px;">x/x</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcB.cmd('^');
+                            mathField_opcB.focus();" style="width: 90px;">^</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcB.cmd('\\cdot');
+                            mathField_opcB.focus();" style="width: 90px;">*</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="row">
-              <div class="input-field col s10">
-                <input placeholder="Opción C" type='text' id='c' name="c">
+              <div class="input-field col s12" style="margin-bottom: 0px;">
+                  <p>Opción C: 
+                <span id='math-field-opcC' style="width: 100%; min-height:40px; margin-bottom: 0px;"></span></p>
               </div>
-              <div class="input-field col s2">
-                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              <div class="input-field col s12" style="margin-top: 0px;">
+                  <input id="latex-opcC" type="text" name="c" readonly>
               </div>
+              <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
+                        <div class="collapsible-body text-reset">
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_sqrt" onclick="mathField_opcC.cmd('\\sqrt');
+                            mathField_opcC.focus();" style="width: 90px;">√</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pm" onclick="mathField_opcC.cmd('\\pm');
+                            mathField_opcC.focus();" style="width: 90px;">∓</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_mp" onclick="mathField_opcC.cmd('\\mp');
+                            mathField_opcC.focus();" style="width: 90px;">±</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_frac" onclick="mathField_opcC.cmd('\\frac');
+                            mathField_opcC.focus();" style="width: 90px;">x/x</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcC.cmd('^');
+                            mathField_opcC.focus();" style="width: 90px;">^</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcC.cmd('\\cdot');
+                            mathField_opcC.focus();" style="width: 90px;">*</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="row">
-              <div class="input-field col s10">
-                <input placeholder="Opción D" type='text' id='d' name="d">
+              <div class="input-field col s12" style="margin-bottom: 0px;">
+                  <p>Opción D: 
+                <span id='math-field-opcD' style="width: 100%; min-height:40px; margin-bottom: 0px;"></span></p>
               </div>
-              <div class="input-field col s2">
-                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              <div class="input-field col s12" style="margin-top: 0px;">
+                  <input id="latex-opcD" type="text" name="d" readonly>
               </div>
+              <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
+                        <div class="collapsible-body text-reset">
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_sqrt" onclick="mathField_opcD.cmd('\\sqrt');
+                            mathField_opcD.focus();" style="width: 90px;">√</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pm" onclick="mathField_opcD.cmd('\\pm');
+                            mathField_opcD.focus();" style="width: 90px;">∓</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_mp" onclick="mathField_opcD.cmd('\\mp');
+                            mathField_opcD.focus();" style="width: 90px;">±</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_frac" onclick="mathField_opcD.cmd('\\frac');
+                            mathField_opcD.focus();" style="width: 90px;">x/x</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcD.cmd('^');
+                            mathField_opcD.focus();" style="width: 90px;">^</a>
+                            <a class="btn waves-effect indigo lighten-1" id="btn_formula_pot" onclick="mathField_opcD.cmd('\\cdot');
+                            mathField_opcD.focus();" style="width: 90px;">*</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="row">
               <div class="input-field col s12">
@@ -164,7 +254,9 @@
             <div class="col s12 m6 l6">
                 <div class="card card card-default scrollspy">
                     <img src="images_algebra/parallax9.png" width="100%"><br><br>
-                    <img src="images_algebra/parallax10.jpg" width="100%">
+                    <img src="images_algebra/parallax10.jpg" width="100%"><br><br>
+                    <img src="images_algebra/parallax7.png" width="100%"><br><br>
+                    <img src="images_algebra/parallax11.jpg" width="100%">
                 </div>
             </div>
             
@@ -440,19 +532,58 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="mathquill/mathquill.js"></script>
 <script>
-var mathFieldSpan = document.getElementById('math-field');
-var latexSpan = document.getElementById('latex');
+var mathFieldSpan = document.getElementById('math-field-pregunta');
+var mathFieldSpanA = document.getElementById('math-field-opcA');
+var mathFieldSpanB = document.getElementById('math-field-opcB');
+var mathFieldSpanC = document.getElementById('math-field-opcC');
+var mathFieldSpanD = document.getElementById('math-field-opcD');
+var latexSpan = document.getElementById('latex-pregunta');
+var latexSpanA = document.getElementById('latex-opcA');
+var latexSpanB = document.getElementById('latex-opcB');
+var latexSpanC = document.getElementById('latex-opcC');
+var latexSpanD = document.getElementById('latex-opcD');
 
 var MQ = MathQuill.getInterface(2); // for backcompat
 var mathField = MQ.MathField(mathFieldSpan, {
   spaceBehavesLikeTab: true, // configurable
   handlers: {
     edit: function() { // useful event handlers
-      latexSpan.textContent = mathField.latex(); // simple API
+      latexSpan.value = mathField.latex(); // simple API
     }
   }
 });
 
-var raiz = document.getElementById('btn_raiz');
-MQ.StaticMath(raiz);
+var mathField_opcA = MQ.MathField(mathFieldSpanA, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      latexSpanA.value = mathField_opcA.latex(); // simple API
+    }
+  }
+});
+var mathField_opcB = MQ.MathField(mathFieldSpanB, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      latexSpanB.value = mathField_opcB.latex(); // simple API
+    }
+  }
+});
+var mathField_opcC = MQ.MathField(mathFieldSpanC, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      latexSpanC.value = mathField_opcC.latex(); // simple API
+    }
+  }
+});
+var mathField_opcD = MQ.MathField(mathFieldSpanD, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      latexSpanD.value = mathField_opcD.latex(); // simple API
+    }
+  }
+});
+
 </script>
