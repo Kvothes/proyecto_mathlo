@@ -162,14 +162,22 @@ router.get('/preguntas', (req, res) => {
 });
 
 router.get('/cuestionarios', (req, res) => {
-    req.app.locals.layout = 'profesor';
-    req.getConnection((err, conn) => {
-        conn.query("select * from mbancopreguntas natural join ctemas natural join cdificultad", (err2, preguntas) => {
-            if (err2) console.log("ERROR 2: " + err2)
-            console.log(preguntas)
-            res.render('profesor/Create', { preguntas: preguntas });
+    if (req.session.usuario == undefined || req.session.usuario.id_tus != 3) {
+        res.redirect('/');
+    } else {
+        req.app.locals.layout = 'profesor';
+        req.getConnection((err, conn) => {
+            conn.query("select * from mbancopreguntas natural join ctemas natural join cdificultad", (err2, preguntas) => {
+                conn.query("select * from eusuariosgrupo natural join musuario natural join cgrupo where id_usu=?", req.session.usuario.id_usu, (err3, grupos) => {
+                    if (err2) console.log("ERROR 2: " + err2)
+                    if (err3) console.log("ERROR 3: " + err2)
+                    console.log(preguntas)
+                    console.log(grupos)
+                    res.render('profesor/Create', { preguntas: preguntas, grupos: grupos });
+                });
+            });
         });
-    });
+    }
 });
 
 /* ------- Peticiones ajax ------------- */
@@ -1846,9 +1854,10 @@ router.post('/Addquestion', (req, res) => {
         let valores = {
             "con_pre": req.body.pregunta,
             "res_cor": req.body.a,
-            //"incisoB": req.body.b,
-            //"incisoC": req.body.c,
-            //"incisoD": req.body.d,
+            "opc_a": req.body.a,
+            "opc_b": req.body.b,
+            "opc_c": req.body.c,
+            "opc_d": req.body.d,
             "id_tem": parseInt(req.body.tema),
             "id_dif": parseInt(req.body.dificultad)
         }
@@ -1863,27 +1872,16 @@ router.post('/Addquestion', (req, res) => {
 router.post('/AddQuizz', (req, res) => {
     req.app.locals.layout = 'profesor';
     console.log(req.body, "VAYA");
-    let id_array = "";
-    let cont = 0;
-    for (let i in req.body) {
-        cont += 1;
-        if (cont > 2) {
-            console.log(i)
-            id_array += req.body[i] + ",";
-        }
-    }
-    id_array = id_array.slice(0, -1);
-    console.log(id_array)
     req.getConnection((err, conn) => {
         let elements = {
-                "nom_cue": req.body.nombre,
-                "id_bpr": id_array
-
-            }
-            /* conn.query('insert into ecuestionario set ?', elements, (err2, elementos) => {
-                 if (err2) console.log("ERROR 2 ", err2)
-                 res.redirect('/CreateQuizz');
-             }); */
+            "nom_cue": req.body.nombre,
+            "id_bpr": req.body.element.toString(),
+            "id_gru": req.body.group.toString()
+        }
+        conn.query('insert into ecuestionario set ?', elements, (err2, elementos) => {
+            if (err2) console.log("ERROR 2 ", err2)
+            res.redirect('/cuestionarios');
+        });
         if (err) console.log("ERROR 1 ", err)
     });
 });

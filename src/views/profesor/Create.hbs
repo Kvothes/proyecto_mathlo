@@ -9,7 +9,19 @@
 							<div class="signup-box">
 								<div id="quizz" class="quizz">
                 <h3>Creación de cuestionario</h3>
-                
+                <h5>Selecciona los grupos</h5> 
+      <ul class="collection">
+        {{#each grupos}}
+    <li class="collection-item avatar">
+      
+      <span class="title">GRUPO: {{nom_gru}}</span>
+     
+      <a id="check{{id_gru}}" onclick="añadir2({{id_gru}})" class="secondary-content"><i class="material-icons" id="icongru{{id_gru}}">check_box_outline_blank
+</i></a>
+    </li>
+    {{/each}}
+  </ul>            
+                <h5>Selecciona las preguntas</h5> 
     <ul class="collection">
         {{#each preguntas}}
     <li class="collection-item avatar">
@@ -77,14 +89,25 @@
         if(att.innerText!="check_box"){
           att.innerText="check_box";
           att.value=true;
-          form.innerHTML+="<input id='element"+id+"' type='hidden' value='"+id+"' readonly name='element"+id+"'></input>";
+          form.innerHTML+="<input id='element"+id+"' type='hidden' value='"+id+"' readonly name='element'></input>";
         }else{
           att.innerText="check_box_outline_blank";
           document.getElementById('element'+id).remove(); 
 
         }
-        
-        
+    }
+    function añadir2(id){
+        let att=document.getElementById('icongru'+id);
+        let form=document.getElementById('preguntas'); 
+        if(att.innerText!="check_box"){
+          att.innerText="check_box";
+          att.value=true;
+          form.innerHTML+="<input id='group' type='hidden' value='"+id+"' readonly name='group'></input>";
+        }else{
+          att.innerText="check_box_outline_blank";
+          document.getElementById('element'+id).remove(); 
+
+        }
     }
     
 </script>

@@ -51,6 +51,7 @@
 -->
 
 <!-- Inicio chido -->
+<link rel="stylesheet" href="mathquill/mathquill.css"/>
 <link rel="stylesheet" type="text/css"
     href="app-assets/css/pages/app-file-manager.min.css">
 <div class="row">
@@ -64,14 +65,23 @@
           <form name="questions" id="questions"
                         method="POST" action="/Addquestion">
             <div class="row">
-              <div class="input-field col s10">
+              <div class="input-field col s12">
                 <input placeholder="Pregunta" type='text'
                             id='pregunta' name="pregunta">
                 
               </div>
-              <div class="input-field col s2">
-                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
-              </div>
+              <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">keyboard</i></div>
+                        <div class="collapsible-body text-reset">
+                            <a class="btn" id="btn_raiz">\sqrt{x}</a>
+                            <a class="btn">+</a>
+                            <a class="btn">+</a>
+                            <a class="btn">+</a>
+                        </div>
+                    </li>
+                </ul>
+                
             </div>
             <div class="row">
               <div class="input-field col s10">
@@ -98,6 +108,14 @@
               </div>
             </div>
             <div class="row">
+              <div class="input-field col s10">
+                <input placeholder="Opción D" type='text' id='d' name="d">
+              </div>
+              <div class="input-field col s2">
+                  <a class="modal-trigger" href="#teclado_modal"><i class="medium material-icons">keyboard</i></a>
+              </div>
+            </div>
+            <div class="row">
               <div class="input-field col s12">
                 <select name="tema" id="tema">
                                 <option value="" disabled selected>Selecciona tema</option>
@@ -114,15 +132,12 @@
                                 <option value="1">Fácil</option>
                                 <option value="2">Normal</option>
                                 <option value="3">Díficil</option>
-                            </select>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <button class="btn waves-effect waves-light indigo lighten-1"
+                </select>
+             
+                         <button class="btn waves-effect waves-light indigo lighten-1"
                                 type="submit" name="action">Agregar
                                 <i class="material-icons right">send</i>
                             </button>
-                </div>
               </div>
               <div class="row">
                   <p id="avisos"></p>
@@ -134,31 +149,11 @@
         <div id="teclado_modal" class="modal bottom-sheet">
     <div class="modal-content">
         <div class="col s12 m6 l6">
-        <input type="text" placeholder="ecuación">
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a>
-      <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">+</a><br><br><br>
+        <span id="math-field" class="width-90"></span>
+        <span id="latex"></span><br><br>
+        
+    </div>
+      <br><br><br>
       </div>
       <div class="col s12 m6 l6">
           <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">Aceptar</a>
@@ -195,7 +190,7 @@
                             <option>Todos los temas</option>
                             {{#each temas}}
                                 <option>{{nom_tem}}</option>
-                                {{/each}}
+                            {{/each}}
                         </select>
 
                         <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">Buscar</a>
@@ -439,4 +434,25 @@
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   });
+</script>
+
+<!-- Tecladito -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="mathquill/mathquill.js"></script>
+<script>
+var mathFieldSpan = document.getElementById('math-field');
+var latexSpan = document.getElementById('latex');
+
+var MQ = MathQuill.getInterface(2); // for backcompat
+var mathField = MQ.MathField(mathFieldSpan, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      latexSpan.textContent = mathField.latex(); // simple API
+    }
+  }
+});
+
+var raiz = document.getElementById('btn_raiz');
+MQ.StaticMath(raiz);
 </script>
