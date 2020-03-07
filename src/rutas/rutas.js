@@ -195,6 +195,7 @@ router.post('/getAlumnosGrupo', (req, res) => {
                     "id_prof": req.session.usuario.id_usu
                 }
                 jfinal.push(j);
+
             });
             res.json(jfinal);
         });
@@ -232,18 +233,55 @@ router.post('/modificarClaveGrupo', (req, res) => {
     });
 
 });
+router.post('/getUsuariosAjax', (req, res) => {
+    const { id_usu } = req.body;
+    req.getConnection((err, conn) => {
+        conn.query('select * from musuario natural join ctipousuario where id_usu = ? ', id_usu, (err, usuConsul) => {
+            console.log('el error es: ', err);
+            let jfinal = [];
+            usuConsul.forEach(usus => {
+                console.log('holi: ', usus.id_usu);
+                let j = {
+                    "id_usu": usus.id_usu,
+                    "nom_usu": usus.nom_usu,
+                    "cor_usu": usus.cor_usu,
+                    "id_tus": usus.id_tus
+                }
+                jfinal.push(j);
+
+            });
+            res.json(jfinal);
+        });
+    });
+});
+router.post('/eliminarUsuarioAjax', (req, res) => {
+    const id_usu = req.body.id_usu;
+    console.log(id_usu);
+
+    req.getConnection((err, conn) => {
+        conn.query('delete from eusuariosgrupo where id_usu = ?', [id_usu], (err, exito) => {
+            conn.query('delete from musuario where id_usu = ?', [id_usu], (err2, exito) => {
+                if (err);
+                console.log(err2);
+                console.log(err);
+                res.json("Usuario eliminado con exito");
+            });
+        });
+    });
+
+});
 router.post('/modificarUsuarioAjax', (req, res) => {
     const id_usu = req.body.id_usu;
     const nom_usu = req.body.nom_usu;
     const cor_usu = req.body.cor_usu;
-    const id_tus = req.body.id_tus;
+
     let data = {
         "nom_usu": nom_usu,
         "cor_usu": cor_usu,
-        "id_tus": id_tus
+
     }
     req.getConnection((err, conn) => {
-        conn.query('update musuario set ? where id_usu = ?', [data], id_usu, (err, exito) => {
+        conn.query('update musuario set ? where id_usu = ?', [data, id_usu], (err, exito) => {
             res.json("Usuario modificado con exito");
         });
     });
@@ -282,6 +320,7 @@ function retornaGrupos(grupos, conn, callback) {
         callback(gruposFin);
     }, 0 | Math.random() * 100);
 }
+
 
 /* -------------- fin peticiones ajax ---------------*/
 router.get('/ModificarDatosF', (req, res) => {

@@ -137,36 +137,17 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="tabla_usu">
                                         {{#each rows}}
                                         <tr>
-                                            <td  contenteditable="true">{{nom_usu}}</td>
-                                            <td  contenteditable="true">{{cor_usu}}</td>
-                                            <td  contenteditable="true">{{cat_tus}}</td>
+                                            <td  contenteditable="true" id="nom_usu{{id_usu}}">{{nom_usu}}</td>
+                                            <td  contenteditable="true" id="cor_usu{{id_usu}}">{{cor_usu}}</td>
+                                            <td>{{cat_tus}}</td>
                                             <td>
-                                                <button class="btn waves-effect waves-light" type="submit" name="action"
-                                                    id="send">
-                                                    <i class="fas fa-trash"></i>
-                                                    <a onclick="document.getElementById('tema_seleccionado').innerHTML = '{{nom_usu}}';
-                                            document.getElementById('id_tema').value = '{{id_usu}}'"
-                                                        class="modal-trigger btn-flat"
-                                                        href="#modal_eliminar">Eliminar</a>
-                                                </button>
-                                                 
+                                                <a href="javascript:void(0);" onclick="modificarUsuario({{id_usu}}, document.getElementById('nom_usu{{id_usu}}').innerText,document.getElementById('cor_usu{{id_usu}}').innerText);" class="waves-effect waves-teal btn-flat">Modificar clave</a>
                                             </td>
                                             <td>
-                                                <button class="btn waves-effect waves-light" type="submit" name="action"
-                                                    href="#modal2" id="send">
-                                                    <i class="fas fa-edit"></i>
-                                                    <a onclick="let str='{{nom_usu}}'
-                                                    let res=str.split(' ');
-                                                    
-                                                    document.getElementById('first_name_mod').value = res[0];
-                                                    document.getElementById('last_name_mod').value = res[1];
-                                                    document.getElementById('id_tema').value = '{{id_usu}}'"
-                                                    class="modal-trigger btn-flat" href="#modal2">Modificar</a>
-                                                </button>
-
+                                                <a href="javascript:void(0);" onclick="eliminarUsuario({{id_usu}});" class="waves-effect waves-teal btn-flat">Eliminar</a>
                                             </td>
                                         </tr>
 
