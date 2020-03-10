@@ -1,0 +1,347 @@
+
+<div class="row">
+    <div class="content-wrapper-before " style="background-color:#857703"></div>
+    <div class="col s12">
+        <div class="container">
+            <!-- invoice list -->
+            <section class="invoice-list-wrapper section">
+                <!-- create invoice button-->
+                <!-- Options and filter dropdown button-->
+                <!-- create invoice button-->
+                <button class="btn waves-effect waves-light" type="submit" name="action"
+                                                    href="#modal3" id="send">
+                                                    <i class="fas fa-edit"></i>
+                                                    <a class="modal-trigger btn-flat" href="#modal3">Agregar</a>  
+                                                    </button>
+                <h3>Usuarios</h3>
+                <div class="responsive-table">
+                    <div class="dataTables_wrapper no-footer">
+                        <div class="top display-flex mb-2">
+                            <div class="action-filters">
+                                <div class="dataTables_filter">
+                                    <label>
+                                        <input type="search"
+                                            placeholder="Buscar"
+                                            id="busqueda_grupo"
+                                            onkeyup="barraBusqueda('busqueda_grupo','tabla_usu');">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="responsive-table highlight">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Correo</td>
+                            <td>Tipo de usuario</td>
+                            <td colspan="2">Acciones</td>
+                        </tr>
+                    </thead>
+                     <tbody id="tabla_usu">
+                                        {{#each usuariosRetorno}}
+                                        <tr>
+                                            <td  contenteditable="true" id="nom_usu{{id_usu}}">{{nom_usu}}</td>
+                                            <td  contenteditable="true" id="cor_usu{{id_usu}}">{{cor_usu}}</td>
+                                            <td>{{cat_tus}}</td>
+                                            <td>
+                                                <a href="javascript:void(0);" onclick="modificarUsuario({{id_usu}}, document.getElementById('nom_usu{{id_usu}}').innerText,document.getElementById('cor_usu{{id_usu}}').innerText);" class="waves-effect waves-teal btn-flat">Modificar clave</a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0);" onclick="eliminarUsuario({{id_usu}});" class="waves-effect waves-teal btn-flat">Eliminar</a>
+                                            </td>
+                                        </tr>
+
+                                        {{else}}
+                                        <tr>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                                <br>
+                                 <!-- create invoice button-->
+                <h3>Grupos</h3>
+                <div class="responsive-table">
+                    <div class="dataTables_wrapper no-footer">
+                        <div class="top display-flex mb-2">
+                            <div class="action-filters">
+                                <div class="dataTables_filter">
+                                    <label>
+                                        <input type="search"
+                                            placeholder="Buscar"
+                                            id="busqueda_grupo"
+                                            onkeyup="barraBusqueda('busqueda_grupo','tabla_grupos');">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="responsive-table highlight">
+                    <thead>
+                        <tr>
+                            <td>Grupo</td>
+                            <td>Clave de acceso</td>
+                            <td>Número de alumnos</td>
+                            <td colspan="2">Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_grupos">
+                        {{#each grupos}}
+                        <tr>
+                            <td>{{nom_gru}}</td>
+                            <td contenteditable="true" id="clave{{id_gru}}">{{cla_gru}}</td>
+                            <td>{{num_alu}}</td>
+                            <td>
+                                <a href="javascript:void(0);" onclick="modificarClaveGrupo({{id_gru}}, document.getElementById('clave{{id_gru}}').innerText);" class="waves-effect waves-teal btn-flat">Modificar clave</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" onclick="mostrarAlumnos({{id_gru}});" class="waves-effect waves-teal btn-flat">Ver alumnado</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table><br>
+                <h4>Alumnos</h4>
+                <div class="responsive-table">
+                    <div class="dataTables_wrapper no-footer">
+                        <div class="top display-flex mb-2">
+                            <div class="action-filters">
+                                <div class="dataTables_filter">
+                                    <label>
+                                        <input type="search"
+                                            placeholder="Buscar"
+                                            id="busqueda_alumno"
+                                            onkeyup="barraBusqueda('busqueda_alumno','tabla_alumnos');">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="responsive-table highlight">
+                    <thead>
+                        <tr>
+                            <td># Alumno</td>
+                            <td>Nombre de alumno</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_alumnos">
+                        
+                    </tbody>
+                </table>
+            
+                
+            </section>
+            <!-- START RIGHT SIDEBAR NAV -->
+            <aside id="right-sidebar-nav">
+                <div id="slide-out-right" class="slide-out-right-sidenav sidenav
+                    rightside-navigation right-aligned">
+                    <div class="row">
+                        <div class="slide-out-right-title">
+                            <div class="col s12 border-bottom-1 pb-0 pt-1">
+                                <div class="row">
+                                    <div class="col s2 pr-0 center">
+                                        <i class="material-icons
+                                            vertical-text-middle"><a href="#"
+                                                class="sidenav-close">clear</a></i>
+                                    </div>
+                                    <div class="col s10 pl-0">
+                                        <ul class="tabs">
+                                            <li class="tab col s4 p-0">
+                                                <a href="#reportes"
+                                                    class="active">
+                                                    <span>Reportes</span>
+                                                </a>
+                                            </li>
+                                            <li class="indicator" style="left:
+                                                0px; right: 188px;"></li></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-out-right-body row pl-3 ps
+                            ps--active-y">
+                            <div id="reportes" class="col s12 pb-0 active">
+                                <div class="collection border-none mb-0">
+                                    <ul class="collection right-sidebar-chat p-0
+                                        mb-0">
+                                        <a href="javascript:void(0);">
+                                            <li class="collection-item
+                                            right-sidebar-chat-item
+                                            display-flex avatar
+                                            pl-5 pb-0"
+                                            data-target="slide-out-chat">
+                                                <i class="material-icons">chrome_reader_mode</i>
+                                            </span>
+                                            <div class="user-content">
+                                                <h6 class="line-height-0">Reporte 1IV2</h6>
+                                            </div>
+                                            <span class="secondary-content
+                                                medium-small">29-02-20</span>
+                                            </li>
+                                        </a>
+                                        <a href="javascript:void(0);">
+                                        <li class="collection-item
+                                            right-sidebar-chat-item
+                                            sidenav-trigger display-flex avatar
+                                            pl-5 pb-0"
+                                            data-target="slide-out-chat">
+                                                <i class="material-icons">chrome_reader_mode</i>
+                                            </span>
+                                            <div class="user-content">
+                                                <h6 class="line-height-0">Reporte 1IV3</h6>
+                                            </div>
+                                            <span class="secondary-content
+                                                medium-small">28-02-20</span>
+                                        </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="ps__rail-x" style="left: 0px; bottom:
+                                0px;"><div class="ps__thumb-x" tabindex="0"
+                                    style="left: 0px; width: 0px;"></div></div><div
+                                class="ps__rail-y" style="top: 0px; height:
+                                624px; right: 0px;"><div class="ps__thumb-y"
+                                    tabindex="0" style="top: 0px; height:
+                                    308px;"></div></div></div>
+                    </div>
+                </div>
+
+            </aside>
+            <!-- END RIGHT SIDEBAR NAV -->
+        </div>
+        <div class="content-overlay"></div>
+    </div>
+</div>
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <h4>Registro</h4>
+        <form action="/registrarAdmin" method="POST" id="registro_usuario">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" name="nombres_usuario" type="text" class="validate">
+                    <label for="first_name">Nombres</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" name="apellidos_usuario" type="text" class="validate">
+                    <label for="last_name">Apellidos</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="tipo_usuario">
+                        <option value="" disabled selected>Escoge tu opción</option>
+                        <option value=3>Profesor</option>
+                        <option value=5>Administrador</option>
+                        <option value=4>Autoridad</option>
+                    </select>
+                    <label>Tipo de cuenta</label>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" name="email_usuario" type="email" class="validate">
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" name="contraseña_usuario" type="password" class="validate">
+                    <label for="password">Password</label>
+                    <span class="helper-text" data-error="invalido" data-success="valido"></span>
+                </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <a onclick="document.getElementById('registro_usuario').submit()"
+                class="waves-effect waves-green btn-flat">Registrar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
+</div>
+            <script>
+                window.addEventListener('load', () => {
+                    setTimeout(carga, 50);
+                    function carga() {
+                        document.getElementById('loadercircle').className = 'hide';
+                        document.getElementById('contents').className = 'animated fadeIn';
+                    }
+
+                })
+                const resultado = document.getElementById('resultados');
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.sidenav');
+                    var instances = M.Sidenav.init(elems);
+                    var elems = document.querySelectorAll('.carousel');
+                    var instances = M.Carousel.init(elems);
+                    var elems = document.querySelectorAll('.modal');
+
+                    var instances = M.Modal.init(elems);
+                    var options = {
+                        data: {
+                            "Microsoft": null,
+                            "Alvin": null
+                        },
+                        onAutocomplete: function (texto) {
+                            resultado.innerHTML = `Resultado: ${texto}`;
+                        }
+                    }
+                    var elems = document.querySelectorAll('.autocomplete');
+                    var instances = M.Autocomplete.init(elems, options);
+                    var elems = document.querySelectorAll('.parallax');
+                    var instances = M.Parallax.init(elems, responsiveThreshold = 100);
+                });
+
+
+
+                // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+                // var collapsibleElem = document.querySelector('.collapsible');
+                // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+                // Or with jQuery
+
+                $(document).ready(function () {
+                    $('.sidenav').sidenav();
+                });
+
+            </script>
+            <script>
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("autocomplete-input");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>

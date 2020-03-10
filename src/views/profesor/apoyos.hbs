@@ -6,7 +6,7 @@
         <div class="container">
             <div class="section app-file-manager-wrapper">
                 <!-- File Manager app overlay -->
-                <div class="app-file-overlay"></div>
+                <div class="app-file-overlay" id="show"></div>
                 <!-- /File Manager app overlay -->
                 <!-- sidebar left start -->
                 <div class="sidebar-left">
@@ -20,14 +20,13 @@
                             <!-- sidebar close icon ends -->
                             <div class="input-field add-new-file mt-0">
                                 <!-- Add File Button -->
-                                <form enctype="multipart/form-data" id="formuploadajax" method="post">
-                                <input type="text" placeholder="Nombre o descripción" id="nombre_poyo">
-                                <input type="text" placeholder="URL" id="url_apoyo">
+                                <form enctype="multipart/form-data" id="formuploadajax" method="POST">
+                                <input type="text" placeholder="URL" name="hipervinculo_apoyo" id="url_apoyo">
                                 <div class="file-field input-field">
                                     <div class="btn indigo
                                     lighten-1">
                                         <span>PDF</span>
-                                        <input type="file" id="pdf_apoyo">
+                                        <input type="file" id="archivo_apoyo" name="archivo_apoyo">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text">
@@ -46,19 +45,22 @@
                                     <span>Añadir apoyo</span>
                                 </button>
                                 </form>
+                                
                             </div>
                             <div class="app-file-sidebar-content ps">
                                 <!-- App File Left Sidebar - Drive Content Starts -->
                                 <span class="app-file-label">Temas</span>
                                 <div class="collection file-manager-drive mt-3">
-                                    {{#each temas}}
-                                    <a href="#" class="collection-item
-                                        file-item-action">
-                                        <div class="fonticon-wrap display-inline
-                                            mr-3">
+                                    <a class="collection-item
+                                        file-item-action" onclick="mostrarApoyos(-1);">
                                             <i class="material-icons">assignment</i>
-                                        </div>
-                                        <span>{{nom_tem}}</span>
+                                            <span style="cursor: hand;">Todos</span>
+                                    </a>
+                                    {{#each temas}}
+                                    <a class="collection-item
+                                        file-item-action" onclick="mostrarApoyos({{id_tem}});">
+                                            <i class="material-icons">assignment</i>
+                                            <span style="cursor: hand;">{{nom_tem}}</span>
                                     </a>
                                     {{/each}}
                                 </div>
@@ -87,13 +89,6 @@
                                 mr-1 ml-1">
                                 <i class="material-icons">menu</i>
                             </div>
-                            <div class="app-file-header-search">
-                                <div class="input-field m-0">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="search" id="tema-search"
-                                        placeholder="Buscar">
-                                </div>
-                            </div>
                             <!-- Header search bar Ends -->
 
                         </div>
@@ -102,56 +97,51 @@
                         <!-- App File Content Starts -->
                         <div class="app-file-content ps">
                             <h6 class="font-weight-700 mb-3">Apoyos</h6>
-
-                            <!-- App File - Recent Accessed Files Section Starts -->
-                            <div class="row app-file-recent-access mb-3">
-                                <div class="col xl3 l6 m3 s12">
-                                    <div class="card box-shadow-none mb-1
-                                        app-file-info">
-                                        <div class="card-content">
-                                            <div class="app-file-content-logo
-                                                grey lighten-4">
-                                                <div class="fonticon">
-                                                    <i class="material-icons">more_vert</i>
-                                                </div>
-                                                <img class="recent-file"
-                                                    src="app-assets/images/icon/pdf.png"
-                                                    height="38" width="30"
-                                                    alt="Card image cap">
-                                            </div>
-                                            <div
-                                                class="app-file-recent-details">
-                                                <div class="app-file-name
-                                                    font-weight-700">Nombre del
-                                                    apoyo</div>
-                                                <div class="app-file-size">12.85kb</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- App File - Recent Accessed Files Section Ends -->
+                                <div class="row app-file-files" id="div_contenedor_apoyos">
+                                    {{#each apoyos}}
+          <div class="col xl3 l6 m3 s6" style="height: 250px;">
+            <div class="card box-shadow-none mb-1 app-file-info">
+              <div class="card-content">
+                <div class="app-file-content-logo grey lighten-4" onclick="setVentanaApoyos('{{nom_pdf}}','{{vin_apo}}','{{nom_tem}}', {{id_apo}});">
+                  <div class="fonticon">
+                    <i class="material-icons">more_vert</i>
+                  </div>
+                  <img class="recent-file" src="app-assets/images/icon/pdf.png" height="38" width="30" alt="Card image cap">
+                </div>
+                <div class="app-file-details">
+                  <div class="app-file-name font-weight-700">{{nom_tem}}</div>
+                  <div class="app-file-size">{{nom_pdf}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+         
+        </div>
                                 <div class="ps__rail-x" style="left: 0px;
                                     bottom:
                                     0px;"><div class="ps__thumb-x" tabindex="0"
-                                        style="left: 0px; width: 0px;"></div></div><div
-                                    class="ps__rail-y" style="top: 0px; right:
-                                    0px;"><div class="ps__thumb-y" tabindex="0"
-                                        style="top: 0px; height: 0px;"></div></div></div>
+                                        style="left: 0px; width: 0px;"></div></div>
+                                        <div class="ps__rail-y" style="top: 0px; right:
+                                    0px;">
+                                    <div class="ps__thumb-y" tabindex="0"
+                                        style="top: 0px; height: 0px;"></div>
+                                        </div>
+                                        </div>
                         </div>
 
                         <!-- file manager main content end  -->
                     </div>
                     <!-- content-right end -->
                     <!-- App File sidebar - Right section Starts -->
-                    <div class="app-file-sidebar-info ps">
+                    <div class="app-file-sidebar-info ps" id="show2">
                         <div class="card box-shadow-none m-0 pb-1">
                             <div class="card-header display-flex
                                 justify-content-between align-items-center">
-                                <h6 class="m-0">Nombre del apoyo</h6>
+                                <h6 class="m-0">Apoyo</h6>
                                 <div class="app-file-action-icons display-flex
                                     align-items-center">
-                                    <i class="material-icons mr-10">update</i>
-                                    <i class="material-icons mr-10">delete</i>
+                                    <i class="material-icons mr-10" id="btn_delete_ventana_apoyos">delete</i>
                                     <i class="material-icons close-icon">close</i>
                                 </div>
                             </div>
@@ -166,45 +156,63 @@
                                                 src="app-assets/images/icon/pdf.png"
                                                 alt="PDF" height="42" width="35"
                                                 class="mt-5 mb-5">
-                                            <p class="mt-4">15.3mb</p>
                                         </div>
                                         <div class="divider mt-5 mb-5"></div>
                                         <div class="pt-6">
+                                            <form enctype="multipart/form-data" id="modificar_apoyo_ventana">
                                             <span class="app-file-label">Info</span>
                                             <div class="display-flex
                                                 justify-content-between
                                                 align-items-center mt-6">
                                                 <p>PDF</p>
-                                                <p class="font-weight-700">archivo</p>
+                                                <p class="font-weight-700" id="pdf_ventana_muestra">archivo</p>
                                             </div>
                                             <div class="display-flex
                                                 justify-content-between
                                                 align-items-center mt-6">
                                                 <p>Link</p>
-                                                <p class="font-weight-700">vinculo</p>
-                                                <a href="javascript:void(0);"><i
-                                                        class="material-icons">update</i></a>
                                             </div>
                                             <div class="display-flex
                                                 justify-content-between
                                                 align-items-center mt-6">
-                                                <p>Tamaño</p>
-                                                <p class="font-weight-700">15.6mb</p>
+                                                <p id="url_ventana_muestra" contenteditable="true">vinculo</p>
                                             </div>
                                             <div class="display-flex
                                                 justify-content-between
                                                 align-items-center mt-6">
-                                                <form action="#">
+                                                <p>Tema</p>
+                                                <p class="font-weight-700" id="tema_ventana_muestra">Tema</p>
+                                                
+                                            </div>
+                                            <div class="display-flex justify-content-between
+                                                align-items-center mt-6">
+                                                <select id="tema_update_ventana_muestra" name="update_tema">
+                                                    <option value = -1>Selecciona tema</option>
+                                                    {{#each temas}}
+                                                    <option value={{id_tem}}>{{nom_tem}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            <input type="hidden" id="id_apoyo" name="id_apoyo_name">
+                                            <div class="display-flex
+                                                justify-content-between
+                                                align-items-center mt-6">
                                                     <div class="file-field
                                                         input-field">
-                                                        <div class="btn indigo
-                                                            lighten-1">
-                                                            <span>Modificar pdf</span>
-                                                            <input type="file">
-                                                        </div>
+                                                    <div class="btn indigo
+                                                     lighten-1">
+                                                    <span>modificar PDF</span>
+                                                    <input type="file" id="archivo_apoyo_modificar" name="archivo_apoyo_modificar">
                                                     </div>
-                                                </form>
-                                            </div></div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                        
+                                                    </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                            <button type="update" class="btn indigo lighten-1">Modificar</button>
+                                            </form></div>
 
                                         </div>
                                     </div>

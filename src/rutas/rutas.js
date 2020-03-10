@@ -121,12 +121,20 @@ router.get('/', (req, res) => {
         }
         if (req.session.usuario.id_tus == 5) {
             req.getConnection((err, conn) => {
+                conn.query('select * from MUsuario natural join CTipoUsuario where cor_usu != ? order by nom_usu asc', req.session.usuario.cor_usu, (err2, usuario) => {
+                    conn.query('select * from cgrupo  natural join musuario natural join eusuariosgrupo order by nom_gru asc', (err, grupos) => {
+                        //console.log(req.session.usuario.id_usu);
+                        //console.log('grupos:', grupos);
+                        retornaGrupos(grupos, conn, (ListaFinalGrupo) => {
+                            if (err2) console.log(err2);
+                            retornaUsuarios(usuario, conn, (ListaFinal) => {
+                                req.app.locals.layout = 'Administrador2';
+                                res.render('admin/prueba_admin', { usuariosRetorno: ListaFinal, grupos: ListaFinalGrupo, usuario: req.session.usuario, rows: usuario });
+                            });
+                        });
 
-                conn.query('select * from MUsuario natural join CTipoUsuario where cor_usu != ?', req.session.usuario.cor_usu, (err2, usuario) => {
-                    if (err2) console.log(err2);
-                    console.log(req.session.usuario.nom_usu);
-                    req.app.locals.layout = 'Administrador';
-                    res.render('admin/HomeAd2', { usuario: req.session.usuario, rows: usuario });
+                    });
+
                 })
             })
         }
@@ -144,7 +152,10 @@ router.get('/apoyos-a-alumnos', (req, res) => {
     req.app.locals.layout = 'profesor';
     req.getConnection((err, conn) => {
         conn.query('select * from ctemas', (err, temas) => {
-            res.render('profesor/apoyos', { temas: temas });
+            conn.query('select * from mapoyos natural join ctemas', (err, apoyos) => {
+                res.render('profesor/apoyos', { temas: temas, apoyos: apoyos });
+            });
+
         });
     });
 
@@ -155,7 +166,10 @@ router.get('/preguntas', (req, res) => {
     req.getConnection((err, conn) => {
         conn.query("select * from ctemas", (err2, temas) => {
             conn.query("select * from cdificultad", (err3, dif) => {
-                res.render('profesor/questions', { temas: temas, dif: dif });
+                conn.query('select * from mbancopreguntas', (err, preguntas) => {
+                    res.render('profesor/questions', { temas: temas, dif: dif, preguntas });
+                });
+
             })
         });
     });
@@ -181,6 +195,45 @@ router.get('/cuestionarios', (req, res) => {
 });
 
 /* ------- Peticiones ajax ------------- */
+
+router.post('/getApoyosAjax', (req, res) => {
+    let tema = req.body.id_tem;
+
+    req.getConnection((err, conn) => {
+        if (tema != -1) {
+            conn.query('select * from mapoyos natural join ctemas where id_tem = ?', tema, (err, apoyos) => {
+                res.json(apoyos);
+            });
+        } else {
+            conn.query('select * from mapoyos natural join ctemas', (err, apoyos) => {
+                res.json(apoyos);
+            });
+        }
+
+    });
+});
+
+router.post('/deleteApoyoAjax', (req, res) => {
+    let id = req.body.id_apoyo;
+
+    req.getConnection((err, conn) => {
+        conn.query('delete from mapoyos where id_apo = ?', id, (err, exito) => {
+            console.log(err);
+
+            res.json('Apoyo eliminado satisfactoriamente');
+        });
+    });
+});
+
+router.post('/updateApoyoLinkAjax', (req, res) => {
+    let id = req.body.id_apoyo;
+    let link = req.body.link;
+    req.getConnection((err, conn) => {
+        conn.query('update mapoyos set vin_apo = ? where id_apo = ?', [link, id], (err, apoyoModificado) => {
+            res.json('Link del apoyo modificado satisfactoriamente');
+        });
+    });
+});
 
 router.post('/getAlumnosGrupo', (req, res) => {
     const { id_gru } = req.body;
@@ -236,22 +289,27 @@ router.post('/modificarClaveGrupo', (req, res) => {
 router.post('/getUsuariosAjax', (req, res) => {
     const { id_usu } = req.body;
     req.getConnection((err, conn) => {
-        conn.query('select * from musuario natural join ctipousuario where id_usu = ? ', id_usu, (err, usuConsul) => {
+        conn.query('select * from musuario natural join ctipousuario ', (err, usuConsul) => {
             console.log('el error es: ', err);
-            let jfinal = [];
-            usuConsul.forEach(usus => {
-                console.log('holi: ', usus.id_usu);
-                let j = {
-                    "id_usu": usus.id_usu,
-                    "nom_usu": usus.nom_usu,
-                    "cor_usu": usus.cor_usu,
-                    "id_tus": usus.id_tus
-                }
-                jfinal.push(j);
+            //console.log('f', usuConsul);
+            retornaUsuarios(usuConsul, conn, (ListaFinal) => {
+                res.json(ListaFinal);
 
             });
-            res.json(jfinal);
+
         });
+    });
+});
+router.get('/prueba_admin', (req, res) => {
+    req.getConnection((err, conn) => {
+        conn.query('select * from MUsuario natural join CTipoUsuario where cor_usu != ?', req.session.usuario.cor_usu, (err2, usuario) => {
+            if (err2) console.log(err2);
+            retornaUsuarios(usuario, conn, (ListaFinal) => {
+                req.app.locals.layout = "Administrador2";
+                res.render('admin/prueba_admin', { usuariosRetorno: ListaFinal, usuario: req.session.usuario, rows: usuario });
+            });
+
+        })
     });
 });
 router.post('/eliminarUsuarioAjax', (req, res) => {
@@ -287,16 +345,32 @@ router.post('/modificarUsuarioAjax', (req, res) => {
     });
 
 });
-
-router.post('/agregarApoyo', (req, res) => {
-    const { formData } = req.body;
-    console.log(formData.values());
-
-    res.json(formData);
-});
-
-
 "use strict";
+
+function retornaUsuarios(usuarios, conn, callback) {
+    let usuariosFin = [],
+        n = 0;
+    usuarios.forEach(user => {
+        conn.query('select * from musuario natural join ctipousuario ', (err, userConsult) => {
+            userConsult.forEach(consult => {
+                n++;
+            });
+            let data = {
+                "id_usu": user.id_usu,
+                "nom_usu": user.nom_usu,
+                "cor_usu": user.cor_usu,
+                "id_tus": user.id_tus,
+                "cat_tus": user.cat_tus
+            }
+            usuariosFin.push(data);
+            //console.log(usuariosFin);
+            n = 0;
+        });
+    });
+    setTimeout(() => {
+        callback(usuariosFin);
+    }, 0 | Math.random() * (.3 - .2) + .2 * 1000);
+}
 
 function retornaGrupos(grupos, conn, callback) {
     let gruposFin = [],
@@ -420,7 +494,6 @@ router.get('/registra', (req, res) => {
 });
 //Registrar Administrador
 router.post('/registrarAdmin', (req, res) => {
-    console.log('me odio');
 
     req.getConnection((err, conn) => {
         if (err) console.log('este es el error: ', err);
@@ -429,7 +502,7 @@ router.post('/registrarAdmin', (req, res) => {
             "curp_usu": null,
             "cor_usu": req.body.email_usuario,
             "pas_usu": cifrado.cifrar(req.body.contraseña_usuario),
-            "id_tus": 5
+            "id_tus": req.body.tipo_usuario
         }
         conn.query('insert into musuario set ?', adminRE, (err2, rows) => {
             if (err2) console.log('este es el error: ', err2);
@@ -1088,38 +1161,66 @@ router.get('/practicas', (req, res) => {
 
 //ANTERIOR subirPracticas
 router.post('/insertarApoyo', upload.single('archivo_apoyo'), (req, res) => {
-    let fileroute, vinculo;
+    let fileroute, vinculo, filename;
 
     if (req.file != undefined) {
         fileroute = req.file.filename;
+        filename = req.file.originalname;
     } else {
         fileroute = null;
+        filename = null;
     }
     if (req.body.hipervinculo_apoyo != undefined) {
         vinculo = req.body.hipervinculo_apoyo;
     } else {
         vinculo = null;
     }
-    if (!req.body.nombre_apoyo || !req.body.apoyo_tema) {
-        res.redirect('/');
+    if (!req.body.apoyo_tema) {
+        res.json('No se pudo insertar el apoyo, verifique los datos');
     } else {
         req.getConnection((err, conn) => {
             let apoyo = {
-                "nom_apo": req.body.nombre_apoyo,
                 "pdf_apo": fileroute,
+                "nom_pdf": filename,
                 "vin_apo": vinculo,
                 "id_tem": req.body.apoyo_tema
             }
-
             conn.query('insert into mapoyos set ?', apoyo, (err, apoyoInsertado) => {
-                res.redirect('/');
+                res.json('Apoyo insertado satisfactoriamente');
+            });
+        });
+    }
+});
+
+router.post('/updateApoyo', upload.single('archivo_apoyo_modificar'), (req, res) => {
+    let json = {
+
+    };
+    if (req.file != undefined) {
+        json.pdf_apo = req.file.filename;
+        json.nom_pdf = req.file.originalname;
+    }
+    if (req.body.link != undefined) {
+        json.vin_apo = req.body.link;
+    }
+    if (req.body.update_tema != -1) {
+        json.id_tem = req.body.update_tema;
+    }
+    req.getConnection((err, conn) => {
+        conn.query('update mapoyos set ? where id_apo = ?', [json, req.body.id_apoyo_name], (err, apoyoModificado) => {
+            conn.query('select * from mapoyos natural join ctemas where id_apo = ?', [req.body.id_apoyo_name], (err, apoyo) => {
+                console.log(apoyo);
+                res.json({
+                    'aviso': "Apoyo modificado satisfactoriamente",
+                    'id': apoyo[0].id_apo,
+                    'pdf': apoyo[0].nom_pdf,
+                    'url': apoyo[0].vin_apo,
+                    'tema': apoyo[0].nom_tem
+                });
             });
 
         });
-    }
-
-
-
+    });
 });
 
 router.post('/editarPractica/:id_pra', (req, res) => {

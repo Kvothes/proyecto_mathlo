@@ -131,14 +131,14 @@
                                             <th>NOMBRE</th>
                                             <th>CORREO</th>
                                             <th>TIPO DE USUARIO</th>
-                                            <th>ELIMINAR</th>
                                             <th>MODIFICAR</th>
+                                            <th>ELIMINAR</th>
 
                                         </tr>
                                     </thead>
 
                                     <tbody id="tabla_usu">
-                                        {{#each rows}}
+                                        {{#each usuariosRetorno}}
                                         <tr>
                                             <td  contenteditable="true" id="nom_usu{{id_usu}}">{{nom_usu}}</td>
                                             <td  contenteditable="true" id="cor_usu{{id_usu}}">{{cor_usu}}</td>
