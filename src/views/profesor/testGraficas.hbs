@@ -1,0 +1,68 @@
+
+<div class="row">
+    <div class="container">
+        <div class="col s12" id="menu_nav_reportes" style="display: none;">
+            <a class="btn indigo lighten-1 waves-effect"
+                href="javascript:void(0);" onclick="cargaGraficas();">General</a>
+            {{#each grupos}}
+            <a class="btn indigo lighten-1 waves-effect"
+                href="javascript:void(0);"
+                onclick="cargarGraficasGrupo({{id_gru}},'{{nom_gru}}');">{{nom_gru}}</a>
+            {{/each}}
+        </div><br><br>
+        <div class="col s6 red-text" id="menu_nav_reportes_cuestionario" style="display:
+            none;">
+            <select id="cuestionarioSeleccionado" class="red-text">
+                <option value= -1 class="red-text">Todos los cuestionarios</option>
+                {{#each cuestionarios}}
+                <option value="{{id_cue}}" class="red-text">{{nom_cue}}</option>
+                {{/each}}
+            </select>
+            <a class="btn indigo lighten-2 waves-effect" href="javascript:void(0);">Aceptar</a>
+        </div>
+        <div class="col s6 red-text" id="menu_nav_reportes_alumnos" style="display:
+            none;">
+            <select id="cuestionarioSeleccionado" class="red-text">
+                <option value= -1 class="red-text">Todos los Alumnos</option>
+                {{#each cuestionarios}}
+                <option value="{{id_cue}}" class="red-text">{{nom_cue}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="col s12">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <div id="btn_inicio" class="center" style="margin-top: 5%;
+                        margin-bottom: 10%;">
+                        <button onclick="cargaGraficas();" style="height: 20%;
+                            font-size: 200%;" class="btn indigo lighten-1
+                            waves-effect width-50 font-weight-900">
+                            Ver gráficos
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div id="graficaGeneralAlumnos"></div>
+                        </div>
+                        <div class="col s12">
+                            <div id="graficaGeneralTemas"></div>
+                        </div>
+                        <div class="col s12">
+                            <div id="graficaGeneralTemasGrupo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!--<script type="text/javascript" src="http://localhost:8000/gamma/generalGrades/"></script>
+<button class="btn indigo lighten-1" onclick="testGraficas('graficasBonitas');">Testear</button>
+
+<div id="graficasBonitas">
+
+</div>-->

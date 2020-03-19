@@ -51,9 +51,9 @@
 -->
 
 <!-- Inicio chido -->
-<link rel="stylesheet" href="mathquill/mathquill.css"/>
+<link rel="stylesheet" href="/mathquill/mathquill.css"/>
 <link rel="stylesheet" type="text/css"
-    href="app-assets/css/pages/app-file-manager.min.css">
+    href="/app-assets/css/pages/app-file-manager.min.css">
 <div class="row">
     <div class="content-wrapper-before blue-grey lighten-5"></div>
     <div class="col s12">
@@ -63,7 +63,7 @@
         <div class="card-content">
           <h4 class="card-title">Insertar pregunta</h4>
           <form name="questions" id="questions"
-                        method="POST" action="/Addquestion">
+                        method="POST" action="/web/Addquestion">
             <div class="row">
               <div class="input-field col s12" style="margin-bottom: 0px;">
                   <p>Pregunta: 
@@ -253,10 +253,10 @@
             </div>
             <div class="col s12 m6 l6">
                 <div class="card card card-default scrollspy">
-                    <img src="images_algebra/parallax9.png" width="100%"><br><br>
-                    <img src="images_algebra/parallax10.jpg" width="100%"><br><br>
-                    <img src="images_algebra/parallax7.png" width="100%"><br><br>
-                    <img src="images_algebra/parallax11.jpg" width="100%">
+                    <img src="/images_algebra/parallax9.png" width="100%"><br><br>
+                    <img src="/images_algebra/parallax10.jpg" width="100%"><br><br>
+                    <img src="/images_algebra/parallax7.png" width="100%"><br><br>
+                    <img src="/images_algebra/parallax11.jpg" width="100%">
                 </div>
             </div>
             
@@ -278,14 +278,14 @@
                             <option>Normal</option>
                             <option>Díficil</option>
                         </select>
-                        <select>
+                        <select id="broswetem">
                             <option>Todos los temas</option>
                             {{#each temas}}
                                 <option>{{nom_tem}}</option>
                             {{/each}}
                         </select>
 
-                        <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);">Buscar</a>
+                        <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);" id="broswe">Buscar</a>
                         
                     <!--left sidebar of file manager start -->
                 </div>
@@ -521,7 +521,7 @@
 
 <!-- Tecladito -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="mathquill/mathquill.js"></script>
+<script src="/mathquill/mathquill.js"></script>
 <script>
 var mathFieldSpan = document.getElementById('math-field-pregunta');
 var mathFieldSpanA = document.getElementById('math-field-opcA');

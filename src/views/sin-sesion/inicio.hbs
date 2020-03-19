@@ -64,7 +64,7 @@
             <div class="card-content black-text">
                 <span class="card-title">Iniciar sesión</span>
                 <div class="row">
-                    <form action="/iniciar" method="POST">
+                    <form action="/web/iniciar" method="POST">
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="email" type="email" name="email_inicio" class="validate">
@@ -98,7 +98,7 @@
     <div class="modal-content">
         <h4>Registro</h4>
         <p>Asegurese de llenar todos los campos</p><br>
-        <form action="/registrar" method="POST" id="registro_usuario">
+        <form action="/web/registrar" method="POST" id="registro_usuario">
             <div class="row">
                 <div class="input-field col s6">
                     <input id="first_name" name="nombres_usuario" type="text" class="validate">
@@ -150,7 +150,7 @@
 <div id="modalRecuperacion" class="modal">
     <div class="modal-content">
         <h4 class="header">Ingrese el ultimo correo electronico con el que ingreso al sitio</h4>
-        <form action="/recuperarCuenta" method="POST" id="recuperar_cuenta">
+        <form action="/web/recuperarCuenta" method="POST" id="recuperar_cuenta">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="email" name="email_recuperacion" type="email" class="validate">
