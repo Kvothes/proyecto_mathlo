@@ -48,6 +48,7 @@ function mostrarAlumnos(id_gru) {
     });
 }
 
+
 function eliminarAlumnoGrupo(id_ugr, id_gru, id_prof) {
     $.ajax({
         url: `/web/deleteAlumnoGrupo`,
@@ -63,33 +64,6 @@ function eliminarAlumnoGrupo(id_ugr, id_gru, id_prof) {
     });
 }
 
-function verGruposProfesor(id_prof) {
-    $.ajax({
-        url: `/web/verGruposProfesor`,
-        method: 'POST',
-        data: {
-            id_prof: id_prof
-        },
-        success: (gruposFin) => {
-            let tbody = $('#tabla_grupos');
-            tbody.html('');
-            gruposFin.forEach(grupo => {
-                if (grupo.cla_gru == null) {
-                    grupo.cla_gru = '';
-                }
-                tbody.append(`
-                    <tr>
-                        <td>${grupo.nom_gru}</td>
-                        <td contenteditable="true" id="clave${grupo.id_gru}">${grupo.cla_gru}</td>
-                        <td>${grupo.num_alu}</td>
-                        <td><a href="javascript:void(0);" class="waves-effect waves-teal btn-flat">Modificar clave</a></td>
-                        <td><a href="javascript:void(0);" onclick="mostrarAlumnos(${grupo.id_gru});" class="waves-effect waves-teal btn-flat">Ver alumnado</a></td>
-                    </tr>
-                `);
-            });
-        }
-    });
-}
 
 function verGruposProfesor(id_prof) {
     $.ajax({
@@ -118,6 +92,36 @@ function verGruposProfesor(id_prof) {
         }
     });
 }
+
+
+function verGruposProfesor(id_prof) {
+    $.ajax({
+        url: `/web/verGruposProfesor`,
+        method: 'POST',
+        data: {
+            id_prof: id_prof
+        },
+        success: (gruposFin) => {
+            let tbody = $('#tabla_grupos');
+            tbody.html('');
+            gruposFin.forEach(grupo => {
+                if (grupo.cla_gru == null) {
+                    grupo.cla_gru = '';
+                }
+                tbody.append(`
+                    <tr>
+                        <td>${grupo.nom_gru}</td>
+                        <td contenteditable="true" id="clave${grupo.id_gru}">${grupo.cla_gru}</td>
+                        <td>${grupo.num_alu}</td>
+                        <td><a href="javascript:void(0);" class="waves-effect waves-teal btn-flat">Modificar clave</a></td>
+                        <td><a href="javascript:void(0);" onclick="mostrarAlumnos(${grupo.id_gru});" class="waves-effect waves-teal btn-flat">Ver alumnado</a></td>
+                    </tr>
+                `);
+            });
+        }
+    });
+}
+
 
 function modificarClaveGrupo(id_gru, clave) {
     $.ajax({
@@ -314,89 +318,36 @@ function obtenerAlumnos(id_gru) {
         },
         success: (res) => {
             let array = [];
-            res.forEach(alumno => {
-                array.push([alumno.id_ugr, alumno.nom_usu]);
-                if (res.indexOf(alumno) == (res.length - 1)) {
-                    crearSelectMaterialize(array, 'alumnosSeleccionados');
-                }
-            });
+            if (id_gru != -1) {
+                res[0].forEach(alumno => {
+                    array.push([alumno.id_ugr, alumno.nom_usu]);
+                    $('#alumnosSeleccionados').html('');
+                    $('#cuestionarioSeleccionado').html('');
+                    if (res[0].indexOf(alumno) == (res[0].length - 1)) {
+                        crearSelectMaterialize(array, 'alumnosSeleccionados', 'Todos los alumnos');
+                        crearSelectMaterialize(res[1], 'cuestionarioSeleccionado', 'Todos los cuestionarios');
+                    }
+                });
+            } else {
+                $('#cuestionarioSeleccionado').html('');
+                crearSelectMaterialize(res[1], 'cuestionarioSeleccionado', 'Todos los cuestionarios');
+            }
         }
     });
 }
 
-
-function crearSelect(arreglo, tituloGeneral, id_contenedor) {
-    generarToken((token) => {
-        let div1 = document.createElement('div');
-        div1.className = 'select-wrapper';
-        let input1 = document.createElement('input');
-        input1.className = 'select-dropdown dropdown-trigger';
-        input1.type = 'text';
-        input1.readOnly = "true";
-        input1.setAttribute('data-target', `select-options-8b3b1920-466c-8ceb-0a56-b222be481a17`);
-        div1.appendChild(input1);
-        let ul1 = document.createElement('ul');
-        ul1.id = `select-options-8b3b1920-466c-8ceb-0a56-b222be481a17`;
-        ul1.className = 'dropdown-content select-dropdown';
-        ul1.tabIndex = 0;
-        ul1.style = '';
-        let ligeneral = document.createElement('li');
-        ligeneral.className = 'selected';
-        ligeneral.tabIndex = 0;
-        ligeneral.id = `select-options-8b3b1920-466c-8ceb-0a56-b222be481a170`
-        let spangeneral = document.createElement('span');
-        spangeneral.textContent = tituloGeneral;
-        ligeneral.appendChild(spangeneral);
-        ul1.appendChild(ligeneral);
-        let select = document.createElement('select');
-        let option1 = document.createElement('option');
-        option1.value = -1;
-        option1.textContent = tituloGeneral;
-        select.appendChild(option1);
-        select.tabIndex = -1;
-        let n = 1;
-        arreglo.forEach(elemento => {
-            let li = document.createElement('li');
-            li.tabIndex = 0;
-            li.id = `select-options-8b3b1920-466c-8ceb-0a56-b222be481a17${n}`
-            let span = document.createElement('span');
-            span.textContent = elemento[1];
-            li.appendChild(span);
-            ul1.appendChild(li);
-
-            let option = document.createElement('option');
-            option.value = elemento[0];
-            option.textContent = elemento[1];
-            select.appendChild(option);
-            n++;
-        });
-        let svg = document.createElement('svg');
-        svg.className = 'caret';
-        svg.height = 24;
-        svg.viewBox = "0 0 24 24";
-        svg.width = 24;
-        svg.xmlns = 'http://www.w3.org/2000/svg';
-        let rect = SVG('<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>').addTo(div1);
-        let path1 = document.createElement('path');
-        path1.d = 'M7 10l5 5 5-5z';
-        let path2 = document.createElement('path');
-        path2.d = 'M0 0h24v24H0z';
-        path2.fill = 'none';
-        svg.appendChild(path1);
-        svg.appendChild(path2);
-        div1.appendChild(ul1);
-        div1.appendChild(select);
-        document.getElementById(id_contenedor).appendChild(div1);
-    });
-
-}
-
-function crearSelectMaterialize(arreglo, id_select) {
+function crearSelectMaterialize(arreglo, id_select, general) {
+    let select = document.getElementById(id_select);
+    let optionGeneral = document.createElement('option');
+    optionGeneral.value = -1;
+    optionGeneral.textContent = general;
+    select.appendChild(optionGeneral);
     arreglo.forEach(elemento => {
-        $(`#${id_select}`).append($('<option>', {
-            value = elemento[0],
-            text = elemento[1]
-        }));
+
+        let option = document.createElement('option');
+        option.value = elemento[0];
+        option.textContent = elemento[1];
+        select.appendChild(option);
         if (arreglo.indexOf(elemento) == (arreglo.length - 1)) {
             $(`#${id_select}`).formSelect();
         }

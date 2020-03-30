@@ -1,6 +1,15 @@
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.load('current', { 'packages': ['bar'] });
 
+function limpiaGraficas() {
+    $('#grafica1').html('');
+    $('#grafica2').html('');
+    $('#grafica3').html('');
+    $('#grafica4').html('');
+    $('#grafica5').html('');
+    $('#grafica6').html('');
+}
+
 function drawChart(chart_data, chart1_main_title, id) {
     var data =
         google.visualization.arrayToDataTable(chart_data);
@@ -29,7 +38,7 @@ function drawChartBar(chart_data, titulo, subtitulo, id) {
 
 function cargaGraficas() {
     $('#menu_nav_reportes_alumnos').css('display', 'none');
-    $('#graficaGeneralTemasGrupo').html('');
+    limpiaGraficas();
     $.ajax({
         url: 'http://localhost:8000/gamma/generalGrades/',
         method: 'GET',
@@ -39,27 +48,81 @@ function cargaGraficas() {
             $('#menu_nav_reportes_cuestionario').css('display', 'inline-block');
             document.getElementById('btn_inicio').style = '';
             document.getElementById('btn_inicio').className = '';
-            drawChart(res, 'Alumnos aprobados y reprobados', "graficaGeneralAlumnos");
+            drawChart(res, 'Alumnos aprobados y reprobados generales', "grafica3");
+
         }
     });
     $.ajax({
         url: 'http://localhost:8000/gamma/generalColumnTopic/',
         method: 'GET',
         success: (res) => {
-            drawChartBar(res, 'Temas', 'Puntaje por temas', 'graficaGeneralTemas');
+            drawChartBar(res, 'Temas', 'Puntaje por temas', 'grafica4');
         }
     });
 }
 
 function cargarGraficasGrupo(id_gru, nom_gru) {
     $('#menu_nav_reportes_alumnos').css('display', 'inline-block');
-    $('#graficaGeneralTemas').html('');
-    $('#graficaGeneralAlumnos').html('');
+    limpiaGraficas();
     $.ajax({
         url: `http://localhost:8000/gamma/generalColumnGroupTopic/${id_gru}/`,
         method: 'GET',
         success: (res) => {
-            drawChartBar(res, `Temas del grupo ${nom_gru}`, 'Correctos e incorrectos', 'graficaGeneralTemasGrupo');
+
+            drawChartBar(res, `Temas del grupo ${nom_gru}`, 'Correctos e incorrectos', 'grafica3');
         }
     });
+}
+
+function filtrarGraficas() {
+    let grupo = document.getElementById('grupo_ver').value;
+    let alumno = document.getElementById('alumno_ver').value;
+    let cuestionario = document.getElementById('cuestionario_ver').value;
+    let tema = document.getElementById('tema_ver').value;
+    if (cuestionario != -1) {
+        if (grupo != -1) {
+            grupoCuestionario(grupo, cuestionario);
+        } else {
+            cuestionaire(cuestionario);
+        }
+    }
+
+}
+
+function grupoCuestionario(id_gru, id_cue) {
+    $.ajax({
+        url: `http://localhost:8000/gamma/generalGroupQuestionnaire/${id_gru}/${id_cue}/`,
+        method: 'GET',
+        success: (res) => {
+            $('#grafica1').html('');
+            drawChart(res, `Aprobados y reprobados del cuestionario en el grupo`, 'grafica1');
+        }
+    })
+    $.ajax({
+        url: `http://localhost:8000/gamma/questionnaireGradeGroup/${id_gru}/${id_cue}/`,
+        method: 'GET',
+        success: (res) => {
+            $('#grafica2').html('');
+            drawChartBar(res, `Correctas e incorrectas del cuestionario en el grupo`, `Por pregunta`, 'grafica2');
+        }
+    })
+}
+
+function cuestionaire(id_cue) {
+    $.ajax({
+        url: `http://localhost:8000/gamma/generalQuestionnaire/${id_cue}/`,
+        method: 'GET',
+        success: (res) => {
+            $('#grafica1').html('');
+            drawChart(res, `Aprobados y reprobados del cuestionario general`, 'grafica1');
+        }
+    })
+    $.ajax({
+        url: `http://localhost:8000/gamma/questionnaireGrades/${id_cue}/`,
+        method: 'GET',
+        success: (res) => {
+            $('#grafica2').html('');
+            drawChartBar(res, `Aciertos e incorrectos del cuestionario`, 'General', 'grafica2');
+        }
+    })
 }

@@ -137,14 +137,14 @@ router.get('/web/vergraficas', (req, res) => {
     req.app.locals.layout = 'profesor';
     req.getConnection((err, conn) => {
         conn.query('select * from eusuariosgrupo natural join cgrupo where id_usu = ?', req.session.usuario.id_usu, (err, grupos) => {
-            conn.query('select id_cue,nom_cue,id_gru from ecuestionario', (err, cuestionarios) => {
+            conn.query('select * from ecuestionario', (err, cuestionarios) => {
                 let array = [],
                     cuestionariosGrupo = [];
                 cuestionarios.forEach(cuestionario => {
                     array = cuestionario.id_gru.split(',');
                     array.forEach(id => {
                         grupos.forEach(grupo => {
-                            if (id == grupo.id_gru) {
+                            if (id == grupo.id_gru && !cuestionariosGrupo.includes(cuestionario)) {
                                 cuestionariosGrupo.push(cuestionario);
                             }
                         });
@@ -156,6 +156,8 @@ router.get('/web/vergraficas', (req, res) => {
     });
 
 });
+
+
 
 // Cerrar sesion
 router.get('/web/logout', (req, res) => {
@@ -262,9 +264,43 @@ router.post('/web/getAlumnosGrupo', (req, res) => {
                     "id_prof": req.session.usuario.id_usu
                 }
                 jfinal.push(j);
-
             });
-            res.json(jfinal);
+            if (id_gru == -1) {
+                conn.query('select * from eusuariosgrupo natural join cgrupo where id_usu = ?', req.session.usuario.id_usu, (err, grupos) => {
+                    conn.query('select id_cue,nom_cue,id_gru from ecuestionario', (err, cuestionarios) => {
+                        let array = [],
+                            cuestionariosGrupo = [],
+                            cuestionarioFinal = [];
+                        cuestionarios.forEach(cuestionario => {
+                            array = cuestionario.id_gru.split(',');
+                            array.forEach(id => {
+                                grupos.forEach(grupo => {
+                                    if (id == grupo.id_gru && !cuestionariosGrupo.includes(cuestionario)) {
+                                        cuestionariosGrupo.push(cuestionario);
+                                        cuestionarioFinal.push([cuestionario.id_cue, cuestionario.nom_cue]);
+                                    }
+                                });
+                            });
+                        });
+                        res.json([jfinal, cuestionarioFinal]);
+                    });
+                });
+            } else {
+                conn.query('select id_cue,nom_cue,id_gru from ecuestionario', (err, cuestionarios) => {
+                    let array = [],
+                        cuestionariosGrupo = [];
+                    cuestionarios.forEach(cuestionario => {
+                        array = cuestionario.id_gru.split(',');
+                        array.forEach(id => {
+                            if (id == id_gru) {
+                                cuestionariosGrupo.push([cuestionario.id_cue, cuestionario.nom_cue]);
+                            }
+                        });
+                    });
+                    res.json([jfinal, cuestionariosGrupo]);
+                });
+            }
+
         });
     });
 });

@@ -1,47 +1,4 @@
 <html>
-    <!--<style>
-    #chat-container {
-        max-width: 600px;
-        margin: 30px auto;
-        border: 1px solid #ddd;
-        box-shadow: 1px 3px 5px rgba(0, 0, 0, .5)
-    }
-
-    #chat-window {
-        padding: 14px 0;
-        margin: 0 20px;
-        border-bottom: 1px solid #e9e9e9;
-        color: #000;
-    }
-
-    #output p {
-        color: rgb(250, 0, 42);
-        padding: 14px 0;
-        margin: 0 20px;
-    }
-
-    #actions p {
-        padding: 14px 0;
-        margin: 0 20px;
-        border-botton: 1px solid #e9e9e9;
-        color: #555;
-    }
-</style>
-    <!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<title>My Chemistlab</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-<script src="js/jquery-1.10.2.js"></script>
-<link href="css/minty.css" rel="stylesheet">
-
-<!-- Materialize 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,7 +37,7 @@
             href="/app-assets/css/themes/vertical-modern-menu-template/style.min.css">
         <link rel="stylesheet" type="text/css"
             href="/app-assets/css/pages/app-invoice.min.css">
-        
+
         <!-- END: Page Level CSS-->
         <!-- BEGIN: Custom CSS-->
         <link rel="stylesheet" type="text/css"
@@ -910,6 +867,9 @@
         </div>
         {{>footer-modern}}
     </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+    <script src="/app-assets/js/custom/custom-script.js"></script>
     <!-- BEGIN VENDOR JS-->
     <script src="/app-assets/js/vendors.min.js"></script>
     <!-- BEGIN VENDOR JS-->
@@ -923,7 +883,6 @@
     <!-- BEGIN THEME  JS-->
     <script src="/app-assets/js/plugins.min.js"></script>
     <script src="/app-assets/js/search.min.js"></script>
-    <script src="/app-assets/js/custom/custom-script.min.js"></script>
     <script src="/app-assets/js/scripts/customizer.min.js"></script>
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
@@ -931,40 +890,9 @@
     <script src="/app-assets/js/scripts/app-file-manager.min.js"></script>
     <!-- END PAGE LEVEL JS-->
 
-    <!-- GRAFICAS -->
-    <script src="/app-assets/js/custom/graficas.js"></script>
-    <!-- FIN GRAFICAS -->
-    
+
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <style type="text/css" id="igtranslator-color"></style>
-
-    <!-- Global site tag (gtag.js) - Google Analytics 
-    <script async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
-    </script>
-    <script src="/socket.io/socket.io.js" charset="utf8"></script>
-    <script src="chat.js" charset="utf8"></script>
-    <script src="js/token.js" charset="utf8"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, responsiveThreshold = 100);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
-    });
-</script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
-    <!-- CDNJS :: Sortable (https://cdnjs.com/) 
-    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
-    <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) 
-    <script
-        src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
-        -->
 </html>
