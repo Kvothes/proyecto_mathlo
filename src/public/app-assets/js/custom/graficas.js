@@ -81,15 +81,19 @@ function filtrarGraficas() {
     let tema = document.getElementById('tema_ver').value;
     if (cuestionario != -1) {
         if (grupo != -1) {
-            grupoCuestionario(grupo, cuestionario);
+            if (alumno != -1) {
+                alumnoCuestionario(alumno, cuestionario);
+            } else {
+                grupoCuestionario(grupo, cuestionario);
+            }
         } else {
             cuestionaire(cuestionario);
         }
     }
-
 }
 
 function grupoCuestionario(id_gru, id_cue) {
+    limpiaGraficas();
     $.ajax({
         url: `http://localhost:8000/gamma/generalGroupQuestionnaire/${id_gru}/${id_cue}/`,
         method: 'GET',
@@ -109,6 +113,7 @@ function grupoCuestionario(id_gru, id_cue) {
 }
 
 function cuestionaire(id_cue) {
+    limpiaGraficas();
     $.ajax({
         url: `http://localhost:8000/gamma/generalQuestionnaire/${id_cue}/`,
         method: 'GET',
@@ -123,6 +128,18 @@ function cuestionaire(id_cue) {
         success: (res) => {
             $('#grafica2').html('');
             drawChartBar(res, `Aciertos e incorrectos del cuestionario`, 'General', 'grafica2');
+        }
+    })
+}
+
+function alumnoCuestionario(id_alum, id_cues) {
+    limpiaGraficas();
+    $.ajax({
+        url: `http://localhost:8000/gamma/questionnaireAlumno/${id_alum}/${id_cues}/`,
+        method: 'GET',
+        success: (res) => {
+            $('#grafica1').html('');
+            drawChart(res, `Correctas e incorrectas del cuestionario del alumno`, 'grafica1');
         }
     })
 }

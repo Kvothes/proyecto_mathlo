@@ -183,9 +183,8 @@ router.get('/web/preguntas', (req, res) => {
         conn.query("select * from ctemas", (err2, temas) => {
             conn.query("select * from cdificultad", (err3, dif) => {
                 conn.query('select * from mbancopreguntas', (err, preguntas) => {
-                    res.render('profesor/questions', { temas: temas, dif: dif, preguntas });
+                    res.render('profesor/questions', { temas: temas, dif: dif, preguntas: preguntas });
                 });
-
             })
         });
     });
@@ -209,6 +208,22 @@ router.get('/web/cuestionarios', (req, res) => {
         });
     }
 });
+
+/*------------AJAX DE CUESTIONARIOS----------*/ //
+router.post('/web/preguntasx', (req, res) => {
+    //req.app.locals.layout = 'profesor';
+    console.log("HA BUSCADO LAS PREGUNTAS");
+    req.getConnection((err, conn) => {
+        const idTema = req.body.tema;
+        const idDif = req.body.dif;
+        conn.query('select * from mbancopreguntas natural join cdificultad 	natural join ctemas where id_tem=? and id_dif=?', (idTema, idDif), (err, preguntas) => {
+            res.json(preguntas);
+        });
+
+    });
+});
+
+/*---------FIn AJAX DE CUESTIONARIOS---------*/
 /*-----------------------------------------FIN CUESTIONARIOS--------------------------------------*/
 /* ------- Peticiones ajax ------------- */
 
@@ -445,6 +460,26 @@ function retornaGrupos(grupos, conn, callback) {
     }, 0 | Math.random() * 100);
 }
 
+function retornaPreguntas(preguntas, conn, callback) {
+    let preguntasFin = [],
+        n = 0;
+    preguntas.forEach(pregunta => {
+        conn.query('select * from mbancopreguntas', (err, pregunta1) => {
+            pregunta1.forEach(pre => {
+                n++;
+            });
+            let g = {
+                "con_pre": pre.con_pre
+            }
+            preguntasFin.push(g);
+            console.log(preguntasFin);
+            n = 0; //pero entonces no va en la consulta post de ajax? purque el retorna grupo oo tienes en ajax
+        });
+    });
+    setTimeout(() => {
+        callback(preguntasFin);
+    }, 0 | Math.random() * 100);
+}
 
 /* -------------- fin peticiones ajax ---------------*/
 
@@ -932,7 +967,6 @@ router.post('/web/Addquestions/:questions', (req, res) => {
         if (err) console.log("ERROR 1 ", err)
     });
 });
-
 router.get('/web/questions', (req, res) => {
     req.app.locals.layout = 'profesor';
     req.getConnection((err, conn) => {

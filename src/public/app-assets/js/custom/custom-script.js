@@ -152,6 +152,21 @@ function modificarUsuario(id_usu, nom_usu, cor_usu) {
     });
 }
 
+function ConsultarPregunta(id_tem, id_dif) {
+    $.ajax({
+        url: `/web/preguntasx`,
+        method: 'POST',
+        data: {
+            id_tem: id_tem,
+            id_dif: id_dif
+        },
+        success: (response) => {
+            M.toast({ html: response, classes: 'rounded' });
+        }
+    });
+}
+
+
 function eliminarUsuario(id_usu) {
     $.ajax({
         url: `/web/eliminarUsuarioAjax`,
@@ -183,7 +198,7 @@ function mostrarUsuarios(id_usu) {
                 if (usuario.id_tus == 1) {
                     valor = "Alumno";
                 } else if (usuario.id_tus == 2) {
-                    valor = "Tutor";
+                    r = "Tutor";
                 } else if (usuario.id_tus == 3) {
                     valor = "Profesor";
                 } else if (usuario.id_tus == 4) {
@@ -210,7 +225,6 @@ function mostrarUsuarios(id_usu) {
         }
     });
 }
-
 $(() => {
     $("#formuploadajax").on("submit", (e) => {
         e.preventDefault();
