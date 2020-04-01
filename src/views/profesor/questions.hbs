@@ -272,21 +272,22 @@
                 <!-- sidebar left start -->
                 <div class="sidebar-left">
                     <!--left sidebar of file manager start -->
-                        <select>
-                            <option>Todas las dificultades</option>
-                            <option>Fácil</option>
-                            <option>Normal</option>
-                            <option>Díficil</option>
+                    <form name="broswequestion" id="broswequestion" method="POST" action="/web/preguntasx">
+                        <select id="broswdif">
+                            <option value="all">Todas las dificultades</option>
+                            <option value="1">Fácil</option>
+                            <option value="2">Normal</option>
+                            <option value="3">Díficil</option>
                         </select>
-                        <select id="broswetem">
-                            <option>Todos los temas</option>
+                        <select id="broswtem">
+                            <option value="all">Todos los temas</option>
                             {{#each temas}}
-                                <option>{{nom_tem}}</option>
+                                <option value="{{id_tem}}">{{nom_tem}}</option>
                             {{/each}}
                         </select>
 
-                        <a class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);" id="broswe">Buscar</a>
-                        
+                        <button type="submit" class="btn waves-effect waves-light indigo lighten-1" href="javascript:void(0);" id="broswe">Buscar</button>
+                    </form>    
                     <!--left sidebar of file manager start -->
                 </div>
                 <!--/ sidebar left end -->
@@ -581,5 +582,52 @@ for(let index = 0; index < contenidoPregunta.length; index++) {
     MQ.StaticMath(contenidoPregunta.item(index));
 }
 
+
+</script>
+<script>
+$(function(){
+    $('#broswequestion').on('submit', function (e){
+        
+	e.preventDefault();
+        $.ajax({
+            url:'/web/preguntasx',
+		method:'POST',
+		data:{
+			id_tema:$('#broswtem').val(),
+			id_dif:$('#broswdif').val()
+			},
+            	success:function(questions){
+                    
+                    document.getElementById('contenedor_preguntas').innerHTML="";
+                    questions.forEach(id=>{
+                        console.log(id.con_pre)
+                        let html=`<div class="col xl3 l6 m3 s12" style="height: 70px;">
+                                    <div class="card box-shadow-none mb-1
+                                        app-file-info">
+                                        <div class="card-content">
+                                            <div class="app-file-content-logo
+                                                grey lighten-4">
+                                                <div class="fonticon">
+                                                    <i class="material-icons">more_vert</i>
+                                                </div>
+                                                <div
+                                                class="app-file-recent-details">
+                                                <div class="app-file-name
+                                                    font-weight-700"><span class="mathquillEstatic">${id.con_pre}</span></div>
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>`; 
+
+                        document.getElementById('contenedor_preguntas').innerHTML+=html;
+                    });
+
+
+            }
+        })
+    })
+});
 
 </script>

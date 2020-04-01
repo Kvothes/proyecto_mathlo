@@ -212,11 +212,12 @@ router.get('/web/cuestionarios', (req, res) => {
 /*------------AJAX DE CUESTIONARIOS----------*/ //
 router.post('/web/preguntasx', (req, res) => {
     //req.app.locals.layout = 'profesor';
-    console.log("HA BUSCADO LAS PREGUNTAS");
     req.getConnection((err, conn) => {
-        const idTema = req.body.tema;
-        const idDif = req.body.dif;
-        conn.query('select * from mbancopreguntas natural join cdificultad 	natural join ctemas where id_tem=? and id_dif=?', (idTema, idDif), (err, preguntas) => {
+        console.log(req.body); 
+        const idTema = req.body.id_tema;
+        const idDif = req.body.id_dif;
+        conn.query('select * from mbancopreguntas natural join cdificultad 	natural join ctemas where id_tem=? and id_dif=?', [idTema, idDif], (err, preguntas) => {
+            if(err)console.log("ERROR ",err)
             res.json(preguntas);
         });
 

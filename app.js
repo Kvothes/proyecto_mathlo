@@ -42,7 +42,7 @@ app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: '$BTC$#1my00770p',
+    password: 'n0m3l0',//$BTC$#1my00770p
     port: 3306,
     database: 'mychemis_algebrae_v01'
 }, 'single'));
@@ -70,7 +70,7 @@ const serverU = app.listen(app.get('port'), () => {
 /**--------------------------SCOKETS-------------------------------- */
 const io = SocketIO(serverU);
 // 
-io.on('connection', (socket) => {
+io.on('connection', (socket) => { 
     console.log('new connection', socket.id);
     socket.on('chat:message', (data) => {
         io.sockets.emit('chat:message', data);
